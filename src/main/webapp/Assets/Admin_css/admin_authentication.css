@@ -1,0 +1,194 @@
+@charset "UTF-8";
+:root {
+    --bg_color: #0f172a;
+    --card_bg_color: #151e31;
+    --card_border_color: #2c3346;
+    --card_shadow: #00000080;
+    --card_hover_border_color: #384158;
+    --white_text: #fff;
+    --gray_text: #99a1af;
+    --input_bg_color: #21293c;
+    --input_border_color: #38404f;
+    --btn_g_left: #923aea;
+    --btn_g_right: #2cd1ee;
+    --btn_text_color: #ffffff;
+    --navbar_bg_color: #1b2637;
+    --header_bg_color: #162033;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg_color);
+    /* background-color: #0f172a; */
+}
+
+.student_btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+}
+
+#login_as_student {
+    border: none;
+    border: 1px solid var(--btn_g_right);
+    background: transparent;
+    box-shadow: 0 10px 25px var(--card_shadow);
+}
+
+#login_as_student:hover {
+    background: var(--btn_g_right);
+    color: var(--bg_color);
+    box-shadow: 0 0 10px var(--btn_g_right);
+}
+
+.Admin_authentication {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1,
+h2 {
+    color: var(--white_text);
+    margin-bottom: 15px;
+}
+
+p {
+    color: var(--gray_text);
+    margin-bottom: 15px;
+}
+
+hr {
+    height: 2px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(90deg, var(--btn_g_left), var(--btn_g_right));
+    margin-top: -10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#card {
+    background-color: var(--card_bg_color);
+    width: 380px;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex-direction: column;
+    transition: .1s;
+}
+
+#card #email_add {
+    color: var(--white_text);
+    text-align: left;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+#card:hover {
+    border: 1px solid var(--card_hover_border_color);
+}
+
+input {
+    width: 100%;
+    background-color: var(--input_bg_color);
+    border: 1px solid var(--input_border_color);
+    padding: 12px 15px;
+    border-radius: 12px;
+    color: var(--white_text);
+    outline: none;
+    transition: 0.5s;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+
+#new_password {
+    margin-bottom: 20px;
+}
+
+input:focus {
+    border-color: var(--btn_g_right);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--btn_g_left), var(--btn_g_right));
+    color: var(--btn_text_color);
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(0.97);
+}
+
+button:active {
+    transform: scale(1);
+}
+
+span {
+    color: var(--gray_text);
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 17px;
+    text-decoration: none;
+    text-align: center;
+}
+
+span:hover {
+    text-decoration: underline;
+}
+
+@media (max-width:420px) {
+
+    body {
+        height: 100vh;
+        padding: 20px 0;
+    }
+
+    .Admin_authentication {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #forget_section,
+    #reset_section {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    #card {
+        width: 98%;
+        padding: 20px;
+    }
+}

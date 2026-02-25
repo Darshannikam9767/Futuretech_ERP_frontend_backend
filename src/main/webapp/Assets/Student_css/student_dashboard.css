@@ -1,0 +1,543 @@
+@charset "UTF-8";
+:root {
+    --bg_color: #0f172a;
+    --card_bg_color: #151e31;
+    --card_border_color: #2c3346;
+    --card_shadow: #00000080;
+    --card_hover_border_color: #384158;
+    --white_text: #fff;
+    --gray_text: #99a1af;
+    --input_bg_color: #21293c;
+    --input_border_color: #38404f;
+    --btn_g_left: #923aea;
+    --btn_g_right: #2cd1ee;
+    --btn_text_color: #ffffff;
+    --navbar_bg_color: #1b2637;
+    --header_bg_color: #162033;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+
+    background-color: var(--bg_color);
+
+}
+
+#institute_logo {
+    height: 60px;
+    border-radius: 4px;
+}
+
+.menuBtn {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+.menuBtn:hover {
+    transform: scale(.9);
+}
+
+.menuBtn:active {
+    transform: scale(1);
+}
+
+/* MOBILE VIEW: Screens 768px and below */
+
+@media (max-width: 768px) {
+
+    body,
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .student_container {
+        overflow-x: hidden;
+        width: 100vw;
+        position: relative;
+    }
+
+    .logo_name,
+    .logout_section {
+        margin-top: 0 !important;
+        position: fixed !important;
+        left: -260px;
+        width: 260px;
+        transition: 0.3s ease-in-out;
+        z-index: 3000;
+        display: flex !important;
+        border-right: 1px solid var(--card_border_color);
+    }
+
+
+    .logo_name {
+        top: 0;
+        height: 90px;
+        background-color: var(--navbar_bg_color);
+    }
+
+
+    #navbar_and_logout_section {
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    #navbar_and_logout_section.show {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+
+    .main_content {
+        display: flex !important;
+        flex-direction: column !important;
+        margin-left: 0 !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+
+    #design_card,
+    .left,
+    .right,
+    .training_progress,
+    .upload_assignment,
+    .task_due {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+        margin-left: 0 !important;
+    }
+
+    #subcard,
+    progress {
+        width: 100% !important;
+    }
+
+    .menuBtn {
+        display: block;
+    }
+
+    .title h2 {
+        margin-bottom: 0;
+    }
+
+    .title p,
+    .title span {
+        display: none;
+    }
+}
+
+h1,
+h2 {
+    color: var(--white_text);
+    margin-bottom: 15px;
+}
+
+p,
+label {
+    color: var(--gray_text);
+    margin-bottom: 15px;
+}
+
+hr {
+    height: 2px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(90deg, var(--btn_g_left), var(--btn_g_right));
+    margin-top: -10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#card {
+    background-color: var(--card_bg_color);
+    width: 380px;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex-direction: column;
+    transition: .1s;
+}
+
+#card #email_add {
+    color: var(--white_text);
+    text-align: left;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+#card:hover {
+    border: 1px solid var(--card_hover_border_color);
+}
+
+
+
+.student_container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+}
+
+.logo_name {
+    width: 240px;
+    min-width: 240px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background-color: var(--navbar_bg_color);
+    border: 1px solid var(--gray_text);
+    border-top: none;
+}
+
+.logo_name .name {
+    padding-left: 20px;
+}
+
+.heading_section {
+    flex: 1;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background-color: var(--header_bg_color);
+    border: 1px solid var(--gray_text);
+    border-top: none;
+    border-left: none;
+}
+
+.profile_logo {
+    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
+    border-radius: 50%;
+    padding: 15px 19px ; 
+    color: var(--white_text);
+    font-weight: bold;
+    overflow: hidden;
+}
+
+/* Ensure the h3 inside doesn't have default margins that push the circle */
+.profile_logo h3 {
+    margin: 0;
+    
+    font-size:20px;
+    font-weight:700;
+}
+/* navbar section */
+
+.navbar_section {
+    display: flex;
+    transition: .2s;
+}
+
+.navbar {
+    top: 90px;
+    left: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navbar_bg_color);
+    border: 1px solid var(--gray_text);
+    width: 240px;
+    min-width: 240px;
+    border-top: none;
+    height: calc(100vh - 180px);
+    padding: 30px 0px;
+    transition: .2s;
+}
+
+.navbar a {
+    text-decoration: none;
+    margin-bottom: 20px;
+    color: var(--white_text);
+    font-size: 20px;
+    padding: 10px 20px;
+    width: 200px;
+    margin-left: 20px;
+
+}
+
+.active {
+    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    border-radius: 15px;
+    color: var(--white_text);
+    font-size: 21px;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    transition: 0.3s;
+
+}
+
+.active:hover {
+    box-shadow: 0 0 10px 1px var(--btn_g_right);
+
+}
+
+.deactive {
+    padding-left: 50px;
+    transition: .3s;
+}
+
+.deactive:hover {
+    background-color: var(--bg_color);
+    padding: 10px;
+    border-radius: 15px;
+    padding-left: 40px;
+}
+
+.logout_section {
+    display: flex;
+    background-color: var(--navbar_bg_color);
+    width: 240px;
+    min-width: 240px;
+    height: 90px;
+    border: 1px solid var(--gray_text);
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    transition: .2s;
+}
+
+.logout_section h2 {
+    color: red;
+    text-shadow: none;
+    margin-left: -85px;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.logout_section :hover {
+    background-color: #fc040417;
+    padding: 20px 40px;
+    border-radius: 15px;
+    /* margin-left: 20px; */
+    border: 1px solid #fc040449;
+    box-shadow: 0 10px 25px var(--card_shadow);
+}
+
+.logout_section h2:hover {
+    margin-left: -10px;
+    align-items: center;
+}
+
+.logout_section h2:hover {
+    transform: scale(0.97);
+}
+
+.logout_section h2:active {
+    transform: scale(1);
+}
+
+
+#design_card {
+    background-color: var(--card_bg_color);
+    /* width: 380px; */
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    transition: .1s;
+    width: calc((100vw - 301px) / 2);
+}
+
+#design_card:hover {
+    border: 1px solid var(--card_hover_border_color);
+}
+
+#subcard {
+    background-color: var(--navbar_bg_color);
+    padding: 20px;
+    border: 1px solid var(--gray_text);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px var(--card_shadow);
+}
+
+#subcard h3 {
+    color: var(--white_text);
+    font-size: 16px;
+    letter-spacing: .5px;
+}
+
+
+#course_progress {
+    width: 100%;
+    height: 18px;
+
+    background-color: var(--input_bg_color);
+    border-radius: 25px;
+    border: 1px solid;
+    margin-bottom: 20px;
+}
+
+.progress_info,
+.sub_progress_info {
+    display: flex;
+    justify-content: space-between;
+}
+
+#course_progress_value {
+    color: var(--white_text);
+    font-weight: 700;
+    font-size: 23px;
+
+}
+
+::-webkit-progress-bar {
+    background-color: var(--input_bg_color);
+    border-radius: 25px;
+}
+
+::-webkit-progress-value {
+    border-radius: 25px;
+    background: linear-gradient(90deg, var(--btn_g_left), var(--btn_g_right));
+}
+
+.training_progress p {
+    font-size: 18px;
+}
+
+label {
+    width: max-content;
+}
+
+#subcard progress {
+    background-color: var(--input_bg_color);
+    border-radius: 25px;
+    border: 1px solid;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#subcard span {
+    color: var(--white_text);
+}
+
+#subcard ::-webkit-progress-value {
+    background: rgb(43, 240, 43);
+}
+
+.main_content {
+    margin-left: 240px;
+    margin-top: 90px;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.upload_assignment {
+
+    height: max-content;
+    display: flex;
+}
+
+.drop_area {
+    text-align: center;
+    background-color: var(--navbar_bg_color);
+    padding: 20px;
+    border: 2.5px dashed var(--gray_text);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.drop_area:hover {
+    border: 2px solid var(--gray_text);
+    border-radius: 20px;
+}
+
+.drop_area p {
+    color: var(--white_text);
+    font-size: 19px;
+}
+
+.drop_area span {
+    color: var(--gray_text);
+}
+
+.upload_assignment button {
+    padding: 18px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white_text);
+    background-color: var(--btn_g_left);
+    transition: .1s;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    cursor: pointer;
+}
+
+.assignment_submit_btn:hover {
+    transform: scale(.99);
+}
+
+.assignment_submit_btn:active {
+    transform: scale(1.01);
+}
+
+
+.student_container {
+    position: fixed;
+}
+
+.navbar_section {
+    position: fixed;
+}
+
+.logout_section {
+    position: fixed;
+}
+
+.main_content {
+    overflow-y: auto;
+}
+
+.task_due {
+    margin-top: 20px;
+}
+
+#description {
+    margin-top: 10px;
+}
+
+#select_file {
+    display: none;
+}

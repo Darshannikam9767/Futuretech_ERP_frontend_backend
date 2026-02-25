@@ -1,0 +1,433 @@
+@charset "UTF-8";
+:root {
+    --bg_color: #0f172a;
+    --card_bg_color: #151e31;
+    --card_border_color: #2c3346;
+    --card_shadow: #00000080;
+    --card_hover_border_color: #384158;
+    --white_text: #fff;
+    --gray_text: #99a1af;
+    --input_bg_color: #21293c;
+    --input_border_color: #38404f;
+    --btn_g_left: #923aea;
+    --btn_g_right: #2cd1ee;
+    --btn_text_color: #ffffff;
+    --navbar_bg_color: #1b2637;
+    --header_bg_color: #162033;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--bg_color);
+
+}
+
+.menuBtn {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+.menuBtn:hover {
+    transform: scale(.9);
+}
+
+.menuBtn:active {
+    transform: scale(1);
+}
+
+/* mobile responsive */
+@media (max-width: 768px) {
+
+    body,
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .admin_container {
+        overflow-x: hidden;
+        width: 100vw;
+        position: relative;
+    }
+
+    .logo_name,
+    .logout_section {
+        margin-top: 0 !important;
+        position: fixed !important;
+        left: -260px;
+        width: 260px;
+        transition: 0.3s ease-in-out;
+        z-index: 3000;
+        display: flex !important;
+        border-right: 1px solid var(--card_border_color);
+    }
+
+
+    .logo_name {
+        top: 0;
+        height: 90px;
+        background-color: var(--navbar_bg_color);
+    }
+
+
+    #navbar_and_logout_section {
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    #navbar_and_logout_section.show {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+
+    .main_content {
+        display: flex !important;
+        flex-direction: column !important;
+        margin-left: 0 !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+
+    .menuBtn {
+        display: block;
+    }
+
+    .title h2 {
+        margin-bottom: 0;
+    }
+
+    .title p,
+    .title span {
+        display: none;
+    }
+
+    .quick_pannel_subcard {
+        flex: 0 0 calc(50% - 15px);
+    }
+
+    .recent_activity table {
+        min-width: 700px;
+        width: max-content;
+        border-collapse: collapse;
+    }
+}
+
+
+h1,
+h2 {
+    color: var(--white_text);
+    margin-bottom: 15px;
+}
+
+p,
+label {
+    color: var(--gray_text);
+    margin-bottom: 15px;
+}
+
+
+.logo_name {
+    width: 240px;
+    min-width: 240px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background-color: var(--navbar_bg_color);
+    border: 1px solid var(--gray_text);
+    border-top: none;
+}
+
+.logo_name .name {
+    padding-left: 20px;
+    padding-top: 15px;
+}
+
+.heading_section {
+    flex: 1;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background-color: var(--header_bg_color);
+    border: 1px solid var(--gray_text);
+    border-top: none;
+    border-left: none;
+}
+
+.profile_logo {
+    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
+    border-radius: 50%;
+    padding: 15px 20px; 
+    color: var(--white_text);
+    font-weight: bold;
+    overflow: hidden;
+}
+
+/* Ensure the h3 inside doesn't have default margins that push the circle */
+.profile_logo h3 {
+    margin: 0;
+    line-height: 1;
+    font-size:18px;
+}
+
+.admin_container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+}
+
+.navbar_section {
+    display: flex;
+}
+
+.navbar {
+    top: 90px;
+    left: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navbar_bg_color);
+    border: 1px solid var(--gray_text);
+    width: 240px;
+    min-width: 240px;
+    border-top: none;
+    height: calc(100vh - 180px);
+    padding: 30px 0px;
+}
+
+.navbar a {
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: var(--white_text);
+    font-size: 18px;
+    padding: 10px 10px;
+    width: 200px;
+    margin-left: 20px;
+
+}
+
+.active {
+    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    border-radius: 15px;
+    color: var(--white_text);
+    font-size: 21px;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    transition: 0.3s;
+
+}
+
+.active:hover {
+    box-shadow: 0 0 10px 1px var(--btn_g_right);
+
+
+}
+
+.deactive {
+    padding-left: 50px;
+    transition: .3s;
+}
+
+.deactive:hover {
+    background-color: var(--bg_color);
+    padding: 10px;
+    border-radius: 15px;
+    padding-left: 20px;
+}
+
+.logout_section {
+    display: flex;
+    background-color: var(--navbar_bg_color);
+    width: 240px;
+    min-width: 240px;
+    height: 90px;
+    border: 1px solid var(--gray_text);
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    transition: .2s;
+}
+
+.logout_section h2 {
+    color: red;
+    text-shadow: none;
+    margin-left: -85px;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.logout_section :hover {
+    background-color: #fc040417;
+    padding: 20px 40px;
+    border-radius: 15px;
+    border: 1px solid #fc040449;
+    box-shadow: 0 10px 25px var(--card_shadow);
+}
+
+.logout_section h2:hover {
+    margin-left: -10px;
+    align-items: center;
+}
+
+.logout_section h2:hover {
+    transform: scale(0.97);
+}
+
+.logout_section h2:active {
+    transform: scale(1);
+}
+
+
+/* main content section */
+
+.main_content {
+    margin-left: 245px;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    width: calc(100vw - 245px);
+    /* IMPORTANT */
+    min-height: calc(100vh - 90px);
+}
+
+.quick_info_pannel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+}
+
+
+.quick_pannel_subcard {
+    background-color: var(--card_bg_color);
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    transition: .2s;
+    width: 23%;
+    text-align: center;
+    cursor: default;
+}
+
+
+.quick_info_pannel h1 {
+    color: var(--white_text);
+    font-size: 25px;
+}
+
+#total_active_student,
+#total_monthly_revenue {
+    color: #2bf02b;
+}
+
+#total_pending_fees {
+    color: red;
+}
+
+.quick_pannel_subcard:hover {
+    border: 1px solid var(--card_hover_border_color);
+}
+
+.recent_activity {
+    background-color: var(--card_bg_color);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    transition: .2s;
+
+}
+
+.recent_activity:hover {
+    border: 1px solid var(--card_hover_border_color);
+}
+
+.recent_activity h3 {
+    text-align: left;
+    padding: 10px;
+    color: var(--white_text);
+}
+
+.recent_activity table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent_activity th,
+.recent_activity td {
+    color: var(--white_text);
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--card_border_color);
+    text-align: left;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+
+.recent_activity th {
+    color: var(--gray_text);
+}
+
+.recent_activity tbody tr:hover {
+    transition: .2s;
+    background-color: var(--navbar_bg_color);
+}
+
+.enable_scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.admin_container {
+    position: fixed;
+}
+
+.navbar_section {
+    position: fixed;
+}
+
+.logout_section {
+    position: fixed;
+}
+
+.main_content {
+    overflow-y: auto;
+}
