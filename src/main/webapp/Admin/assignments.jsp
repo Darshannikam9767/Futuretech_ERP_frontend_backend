@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futuretech | Admin Dashboard</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/assignments.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
 </head>
 
@@ -50,7 +51,7 @@
     </div>
     
     <main class="main_content">
-     	<h1>Assignments Section</h1>
+     	<h1>Write your JSP/HTML code here</h1>
      </main>
      
      <%
