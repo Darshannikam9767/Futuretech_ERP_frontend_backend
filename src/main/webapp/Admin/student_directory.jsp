@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futuretech | Admin Dashboard</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/student_directory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
 </head>
 
@@ -49,91 +50,79 @@
         </div>
     </div>
      <main class="main_content">
-     	    <div class="table_wrapper">
+     	<div class="quick_info_pannel">
+            <div class="total_students quick_pannel_subcard">
+                <p>Total Students</p>
+                <h1 id="total_students">2300</h1>
+            </div>
+
+            <div class="active_student quick_pannel_subcard">
+                <p>Active Students</p>
+                <h1 id="total_active_student">1051</h1>
+            </div>
+
+            <div class="completed_students quick_pannel_subcard">
+                <p>Completed</p>
+                <h1 id="total_completed_students">31</h1>
+            </div>
+
+            <div class="this_month quick_pannel_subcard">
+                <p>This Month</p>
+                <h1 id="total_this_month_students">+ <span>35</span></h1>
+            </div>
+
+        </div>
+
+
+        <div class="student_directory">
+            <div id="top_title_and_button">
+                <h3>Student Directory</h3>
+                <button id="add_new_student">+ <span>Add New Student</span></button>
+            </div>
+            <div class="enable_scroll">
                 <table>
                     <thead>
                         <tr>
-                            <th>Student</th>
-                            <th>Contact</th>
-                            <th>Course</th>
-                            <th>Batch</th>
-                            <th>Progress</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>
+                                Student Name
+                            </th>
+                            <th>
+                                Contact
+                            </th>
+                            <th>
+                                Course
+                            </th>
+                            <th>
+                                Progress
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+
                         </tr>
                     </thead>
-
                     <tbody>
-
-                        <% List<Map<String,Object>> students =
-                            (List<Map<String,Object>>)request.getAttribute("students");
-
-                                if(students != null){
-                                for(Map<String,Object> s : students){
-                                    %>
-
-                                    <tr>
-                                        <td>
-                                            <strong>
-                                                <%= s.get("name") %>
-                                            </strong><br>
-                                            <span>ID: <%= s.get("id") %></span>
-                                        </td>
-
-                                        <td>
-                                            <%= s.get("email") %><br>
-                                                <i class="fa-solid fa-phone call_icon"></i>
-                                                <%= s.get("phone") %>
-                                        </td>
-
-                                        <td>
-                                            <%= s.get("course") %>
-                                        </td>
-                                        <td>
-                                            <%= s.get("batch") %>
-                                        </td>
-
-                                        <td>
-                                            <div class="progress">
-                                                <span style="width:<%= s.get(" progress") %>%"></span>
-                                            </div>
-                                            <%= s.get("progress") %>%
-                                        </td>
-
-                                        <td>
-                                            <span class="status <%= s.get(" status") %>">
-                                                <%= s.get("status") %>
-                                            </span>
-                                        </td>
-
-                                        <td class="actions">
-
-                                            <a href="StudentDirectory?action=view&id=<%= s.get(" id") %>">
-                                                <i class="fa-solid fa-eye view"></i>
-                                            </a>
-
-                                            <a href="StudentDirectory?action=edit&id=<%= s.get(" id") %>">
-                                                <i class="fa-solid fa-pen edit"></i>
-                                            </a>
-
-                                            <form action="StudentDirectory" method="post" style="display:inline;">
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="id" value="<%= s.get(" id") %>">
-                                                <button type="submit" style="background:none;border:none;">
-                                                    <i class="fa-solid fa-trash delete"></i>
-                                                </button>
-                                            </form>
-
-                                        </td>
-                                        <% } }else{ %>
-                                    <tr>
-                                        <td colspan="7">No Students Found</td>
-                                    </tr>
-                                    <% } %>
-
+                        <tr>
+                            <td>Rahul Kumar</td>
+                            <td>rahulkumar@gmail.com</td>
+                            <td>Java Full stack</td>
+                            <td>67%</td>
+                            <td>Active</td>
+                            <td>
+                                <div id="action_div">
+                                    <i class="fa-solid fa-pen edit"></i>
+                                    <i class="fa-solid fa-trash delete"></i>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+
      </main>
     
     
@@ -170,17 +159,6 @@
         		window.location.href="${pageContext.request.contextPath}/LogoutServlet";
         })
         
-        document.querySelector(".add_btn").onclick = function() {
-    document.getElementById('addStudentModal').style.display = 'block';
-}
-
-
-window.onclick = function(event) {
-    let modal = document.getElementById('addStudentModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-}
     </script>
 </body>
 

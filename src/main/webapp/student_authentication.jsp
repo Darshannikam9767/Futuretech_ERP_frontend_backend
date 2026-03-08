@@ -68,7 +68,7 @@
                     <input type="text" id="otp_input" name="otp" placeholder="Enter 6-digit OTP"
                         autocomplete="one-time-code" maxlength="6" required>
                     <input type="password" name="new_password" placeholder="Enter new Password"
-                        autocomplete="current-password" required>
+                        autocomplete="current-password" required minlength="8">
                      <button id="set_password_btn" type="submit">Set Password</button>
                 </form>
             </div>
