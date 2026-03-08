@@ -48,10 +48,10 @@ public class AdminDashboard extends HttpServlet {
 
 		        if (rs.next()) {
 		            int active = rs.getInt("active_count");
+		            String adminName = (String) session.getAttribute("username");
 		            double revenue = rs.getDouble("total_revenue");
 		            int staff = rs.getInt("staff_count");
 		            double pending = rs.getDouble("total_pending");
-		            String adminName = (String) session.getAttribute("username");
 
 		            out.println("<script>");
 		            // User Profile Info
@@ -73,13 +73,13 @@ public class AdminDashboard extends HttpServlet {
 		    
 		        
 		        try(Statement stTable = con.createStatement();
-		        		ResultSet rsTable = stTable.executeQuery("select full_name,course,created_at,amount_paid, status from students order by created_at desc limit 7")){
+		        		ResultSet rsTable = stTable.executeQuery("select full_name,course_id,created_at,amount_paid, status from students order by created_at desc limit 7")){
 		        	out.println("<script>");
 		        	out.println("let tbody = document.querySelector('.enable_scroll table tbody')");
 		        	out.println("if(tbody){tbody.innerHTML = ''}");
 		        	while(rsTable.next()) {
 		        			String name = rsTable.getString("full_name");
-		        			String course_name = rsTable.getString("course");
+		        			String course_name = rsTable.getString("course_id");
 		        			String date = rsTable.getString("created_at").split(" ")[0];
 		        			int amount = rsTable.getInt("amount_paid");
 		        			String status = rsTable.getString("status");
