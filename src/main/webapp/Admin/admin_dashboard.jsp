@@ -53,22 +53,22 @@
         <div class="quick_info_pannel">
             <div class="active_student quick_pannel_subcard">
                 <p>Active Students</p>
-                <h1 id="total_active_student">1051</h1>
+                <h1 id="total_active_student">0</h1>
             </div>
 
             <div class="monthly_revenue quick_pannel_subcard">
                 <p>Monthly Revenue</p>
-                <h1 id="total_monthly_revenue">₹ <span>251000</span></h1>
+                <h1 id="total_monthly_revenue">₹ <span>0</span></h1>
             </div>
 
             <div class="working_in_org quick_pannel_subcard">
                 <p>Working in Org</p>
-                <h1 id="working_in_org">31</h1>
+                <h1 id="working_in_org">0</h1>
             </div>
 
             <div class="pending_fees quick_pannel_subcard">
                 <p>Pending Fees</p>
-                <h1 id="total_pending_fees">₹ <span>35000</span></h1>
+                <h1 id="total_pending_fees">₹ <span>0</span></h1>
             </div>
 
         </div>
@@ -89,7 +89,10 @@
                                 Date
                             </th>
                             <th>
-                                Amount
+                                Amount Paid
+                            </th>
+                            <th>
+                            	Pending Fees
                             </th>
                             <th>
                                 Status

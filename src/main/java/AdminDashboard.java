@@ -38,10 +38,10 @@ public class AdminDashboard extends HttpServlet {
 		System.out.println("Entered in Admin Dashboard section........");
 		try(Connection con = DBConnection.getConnection()){
 			String statsQuery = "SELECT " +
-		            "(SELECT COUNT(*) FROM students WHERE status != 'Dropped' and status != 'Completed' and is_accesable=true) AS active_count, " +
-		            "(SELECT IFNULL(SUM(amount_paid), 0) FROM students) AS total_revenue, " +
-		            "(SELECT COUNT(*) FROM staff WHERE is_active = 1) AS staff_count, " +
-		            "(SELECT IFNULL(SUM(total_fees - amount_paid), 0) FROM students) AS total_pending";
+				    "(SELECT COUNT(*) FROM students WHERE status != 'Dropped' AND status != 'Completed' AND is_accesable=true) AS active_count, " +
+				    "(SELECT IFNULL(SUM(amount_paid), 0) FROM students WHERE is_accesable=true) AS total_revenue, " +
+				    "(SELECT COUNT(*) FROM admin) AS staff_count, " +
+				    "(SELECT IFNULL(SUM(c.fees - s.amount_paid), 0) FROM students s JOIN courses c ON s.course_id = c.course_id WHERE s.is_accesable=true) AS total_pending";
 
 		        Statement st = con.createStatement();
 		        ResultSet rs = st.executeQuery(statsQuery);
@@ -75,7 +75,7 @@ public class AdminDashboard extends HttpServlet {
 		        try(Statement stTable = con.createStatement();
 		        		
 //		        		String studentquery = "select s.full_name, c.course_name, s.created_at, s.amount_paid, s.status from students s join courses c on s.course_id = c.course_id where s.is_accesable = true order by s.created_at desc limit 7";
-		        		ResultSet rsTable = stTable.executeQuery("select s.full_name, c.course_name, s.created_at, s.amount_paid, s.status from students s join courses c on s.course_id = c.course_id where s.is_accesable = true order by s.created_at desc limit 7")){
+		        		ResultSet rsTable = stTable.executeQuery("select s.full_name, c.course_name, s.created_at, s.amount_paid, s.status, c.fees as total_fees from students s join courses c on s.course_id = c.course_id where s.is_accesable = true order by s.created_at desc limit 7")){
 		        	out.println("<script>");
 		        	out.println("let tbody = document.querySelector('.recent_activity_table table tbody')");
 		        	out.println("if(tbody){tbody.innerHTML = ''}");
@@ -83,14 +83,16 @@ public class AdminDashboard extends HttpServlet {
 		        			String name = rsTable.getString("full_name");
 		        			String course_name = rsTable.getString("course_name");
 		        			String date = rsTable.getString("created_at").split(" ")[0];
-		        			int amount = rsTable.getInt("amount_paid");
+		        			int amount_paid = rsTable.getInt("amount_paid");
 		        			String status = rsTable.getString("status");
-		        			
+		        			int total_fees=rsTable.getInt("total_fees");
+		        			int pending_fees = total_fees-amount_paid;
 		        			String tableRow="<tr>"+
 		        							"<td>"+name+"</td>"+
 		        							"<td>"+course_name+"</td>"+
 		        							"<td>"+date+"</td>"+
-		        							"<td>₹ <span>"+amount+"</span></td>"+
+		        							"<td>₹ <span>"+amount_paid+"</span></td>"+
+		        							"<td>₹ <span>"+pending_fees+"</span></td>"+
 		        							"<td>"+status+"</td>"+
 		        							"</tr>";
 		        			
