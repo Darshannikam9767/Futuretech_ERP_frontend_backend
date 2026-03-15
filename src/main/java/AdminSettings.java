@@ -9,13 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 
-import DataBase.DBConnection;
-
-/**
- * Servlet implementation class AdminSettings
- */
 @WebServlet("/AdminSettings")
 public class AdminSettings extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,8 +35,7 @@ HttpSession session = request.getSession(false);
 		
 		request.getRequestDispatcher("/Admin/settings.jsp").include(request, response);
 		
-		try(Connection con = DBConnection.getConnection()){
-//			Statement st = con.createStatement();
+		try {
 			
 			String adminName = (String) session.getAttribute("username");
 			out.println("<script>");

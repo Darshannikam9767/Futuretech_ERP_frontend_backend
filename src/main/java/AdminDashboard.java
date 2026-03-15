@@ -38,7 +38,7 @@ public class AdminDashboard extends HttpServlet {
 		System.out.println("Entered in Admin Dashboard section........");
 		try(Connection con = DBConnection.getConnection()){
 			String statsQuery = "SELECT " +
-		            "(SELECT COUNT(*) FROM students WHERE status != 'Dropped') AS active_count, " +
+		            "(SELECT COUNT(*) FROM students WHERE status != 'Dropped' and status != 'Completed' and is_accesable=true) AS active_count, " +
 		            "(SELECT IFNULL(SUM(amount_paid), 0) FROM students) AS total_revenue, " +
 		            "(SELECT COUNT(*) FROM staff WHERE is_active = 1) AS staff_count, " +
 		            "(SELECT IFNULL(SUM(total_fees - amount_paid), 0) FROM students) AS total_pending";
@@ -73,9 +73,11 @@ public class AdminDashboard extends HttpServlet {
 		    
 		        
 		        try(Statement stTable = con.createStatement();
-		        		ResultSet rsTable = stTable.executeQuery("select s.full_name,c.course_name,s.created_at,s.amount_paid, s.status from students s join courses c on s.course_id = c.course_id order by created_at desc limit 7")){
+		        		
+//		        		String studentquery = "select s.full_name, c.course_name, s.created_at, s.amount_paid, s.status from students s join courses c on s.course_id = c.course_id where s.is_accesable = true order by s.created_at desc limit 7";
+		        		ResultSet rsTable = stTable.executeQuery("select s.full_name, c.course_name, s.created_at, s.amount_paid, s.status from students s join courses c on s.course_id = c.course_id where s.is_accesable = true order by s.created_at desc limit 7")){
 		        	out.println("<script>");
-		        	out.println("let tbody = document.querySelector('.enable_scroll table tbody')");
+		        	out.println("let tbody = document.querySelector('.recent_activity_table table tbody')");
 		        	out.println("if(tbody){tbody.innerHTML = ''}");
 		        	while(rsTable.next()) {
 		        			String name = rsTable.getString("full_name");

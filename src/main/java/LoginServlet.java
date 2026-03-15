@@ -21,8 +21,8 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String email = request.getParameter("email").trim();
+        String password = request.getParameter("password").trim();
         
         System.out.println(email+"\n"+password);
         
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         try(Connection con = DBConnection.getConnection()){
             String query = (role.equals("admin")) 
                 ? "select * from admin where email=? and password=?" 
-                : "select * from students where email=? and password=?";
+                : "SELECT * FROM students WHERE email=? AND password=? AND is_accesable=true";
             
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, email);

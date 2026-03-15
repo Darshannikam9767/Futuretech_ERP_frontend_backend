@@ -48,6 +48,11 @@
     -webkit-overflow-scrolling: touch;
 }
 
+.student_directory_table{
+	overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .completed_students h1 {
     color: var(--btn_g_right);
 }
@@ -62,7 +67,7 @@
 
 }
 
-#add_new_student {
+#add_new_student_btn {
     background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
     padding-left: 15px;
     padding-right: 15px;
@@ -75,28 +80,40 @@
     cursor: pointer;
 }
 
-#add_new_student:hover {
-    transform: scale(0.99);
+#add_new_student_btn:hover {
+    transform: scale(0.98);
     box-shadow: 0 0 10px 1px var(--btn_g_right);
 }
 
-#add_new_student:active {
+#add_new_student_btn:active {
     transform: scale(1.01);
 }
 
-#action_div {
+.action_div {
     display: flex;
     gap: 20px;
     transition: .3s;
     cursor: pointer;
+    align-items:center;
 }
 
-#action_div i:hover {
-    transform: scale(0.97);
+.action_div i {
+    padding: 8px; 
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#action_div i:active {
-    transform: scale(1.09);
+.action_div i:hover {
+    transform: scale(1.1); 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.action_div i:active {
+    transform: scale(0.9); 
 }
 
 .edit {
@@ -105,4 +122,101 @@
 
 .delete {
     color: red;
+}
+
+.edit_form {
+
+    margin-top: 20px;
+    background-color: var(--card_bg_color);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    margin-bottom: 20px;
+    transition: .1s;
+}
+
+.edit_form form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.edit_form input,
+.edit_form select {
+    width: calc(50% - 10px);
+
+    background-color: var(--input_bg_color);
+    border: 1px solid var(--input_border_color);
+    padding: 12px 15px;
+    border-radius: 12px;
+    color: var(--white_text);
+    outline: none;
+    transition: 0.5s;
+    font-size: 17px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+
+.edit_form input:focus,
+.edit_form select:focus {
+    border-color: var(--btn_g_right);
+}
+
+#update_btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
+    padding: 12px;
+    border-radius: 15px;
+    color: var(--white_text);
+    font-size: 19px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+#update_btn:hover {
+    transform: scale(0.99);
+    box-shadow: 0 0 10px 1px var(--btn_g_right);
+}
+
+#update_btn:active {
+    transform: scale(1.01);
+}
+
+@media (max-width: 1024px) {
+
+	#add_new_student_btn{
+		font-size:16px;
+	}
+    .edit_form input,
+    .edit_form select {
+        width: 100%;
+    }
+}
+
+.edit_form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 35px;
+}
+
+.edit_form select option {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.edit_form {
+    display: none;
 }

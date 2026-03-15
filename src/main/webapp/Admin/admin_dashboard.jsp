@@ -75,7 +75,7 @@
 
         <div class="recent_activity ">
             <h3>Recent Activity</h3>
-            <div class="enable_scroll">
+            <div class="enable_scroll recent_activity_table">
                 <table>
                     <thead>
                         <tr>
