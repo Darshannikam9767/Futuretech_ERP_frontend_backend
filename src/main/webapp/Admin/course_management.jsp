@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,15 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futuretech | Admin Dashboard</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/course_management.css">
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/course_management.css"> 
+     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="admin_container">
         <div class="logo_name">
-            <img src="${pageContext.request.contextPath}/Assets/images/logo.png" alt="institute logo" style="height:60px; border-radius:3px;">
+             <img src="${pageContext.request.contextPath}/Assets/images/logo.png" alt="institute logo" style="height:60px; border-radius:3px;">
             <div class="name">
                 <h2>Futuretech</h2>
                 <p>Admin Portal</p>
@@ -36,8 +35,10 @@
         <div class="navbar_section">
             <nav class="navbar">
                 <a href="${pageContext.request.contextPath}/AdminDashboard" class="deactive">Dashboard</a>
-                <a href="${pageContext.request.contextPath}/AdminStudentDirectory" class="deactive">Student Directory</a>
-                <a href="${pageContext.request.contextPath}/AdminCourseManagement" class="active">Course Management</a>
+                <a href="${pageContext.request.contextPath}/AdminStudentDirectory" class="deactive">Student
+                    Directory</a>
+                <a href="${pageContext.request.contextPath}/AdminCourseManagement" class="active">Course
+                    Management</a>
                 <a href="${pageContext.request.contextPath}/AdminFeeTracker" class="deactive">Fee Tracker</a>
                 <a href="${pageContext.request.contextPath}/AdminAssignments" class="deactive">Assignments</a>
                 <a href="${pageContext.request.contextPath}/AdminRegister" class="deactive">Register</a>
@@ -49,64 +50,143 @@
             <h2 id="logout_btn">Logout</h2>
         </div>
     </div>
-    
+
     <main class="main_content">
-     	<div class="dashboard_content">
-            <section class="stats_grid">
-                <div class="stat_card"><span>Total Courses</span><p id="statTotal">7</p></div>
-                <div class="stat_card"><span>Active Courses</span><p>6</p></div>
-                <div class="stat_card"><span>Total Students</span><p>1150</p></div>
-                <div class="stat_card"><span>Domains</span><p>6</p></div>
-            </section>
-            <div class="management_box">
-                <div class="m_header">
-                    <h3>Course & Domain Management</h3>
-                    <button class="add_btn" onclick="openModal()"><i class='bx bx-plus'></i> Add New Course</button>
-                </div>
-                <div class="filter_row">
-                    <div class="search_courses">
-                        <i class='bx bx-book'></i>
-                        <input type="text" id="courseSearch" placeholder="Search courses...">
+        <div class="quick_info_pannel">
+            <div class="total_courses quick_pannel_subcard">
+                <p>Total Courses</p>
+                <h1 id="total_courses">4</h1>
+            </div>
+
+            <div class="total_students quick_pannel_subcard">
+                <p>Total Students</p>
+                <h1 id="total_students">31</h1>
+            </div>
+
+            <div class="domains quick_pannel_subcard">
+                <p>Domains</p>
+                <h1 id="total_domains">3</span></h1>
+            </div>
+
+        </div>
+
+        <div class="course_and_domain_management">
+            <div id="top_title_and_button">
+                <h3>Course & Domain Management</h3>
+                <button id="add_new_course_btn">+ <span>Add New Course</span></button>
+            </div>
+            <div id="add_course_form" class="hidden">
+                <form action="" method="POST">
+                    <input type="text" id="new_course_name" name="course_name" placeholder="Course Name" required>
+                    <input type="text" name="fees" placeholder="Total Fees" required>
+                    <input type="text" name="duration" placeholder="Duration (e.g. 6 Months)" required>
+                    <input type="text" name="description" placeholder="Course Description"></>
+                    <button type="" id="add_course_btn">Add Course</button>
+                </form>
+            </div>
+
+            <div id="edit_course_form" class="hidden">
+                <form action="" method="POST">
+                    <input type="text" id="real_c_id" name="course_id" placeholder="Course ID">
+                    <input type="text" id="edit_course_name" name="course_name" placeholder="Course Name" required>
+                    <input type="text" id="edit_course_fees" name="fees" placeholder="Total Fees" required>
+                    <input type="text" id="edit_course_duration" name="duration" placeholder="Duration (e.g. 6 Months)"
+                        required>
+                    <input type="text" id="edit_course_description" name="description" placeholder="Course Description">
+                    </>
+                    <button type="" id="update_course_btn">Save Course Changes</button>
+                </form>
+            </div>
+
+            <div class="all_courses_cards">
+                <div class="course_card">
+                    <div class="title_info">
+                        <h3 id="course_name">
+                            Web Development
+                        </h3>
+                        <h4 id="course_body">
+                            Complete Web Development, HTML, CSS, JS, Bootstrap
+                        </h4>
                     </div>
-                    <select class="domain_select">
-                        <option>All</option>
-                    </select>
+                    <div class="course_info">
+                        <h3 hidden id="real_course_id">1</h3>
+                        <div class="duration_subcard">
+                            <h3 id="duration">6 Months</h3>
+                            <span id="d_span">Duration</span>
+                        </div>
+                        <div class="fees_subcard">
+                            <h3 id="fees">₹ <span>42000</span></h3>
+                            <span id="f_span">Fee</span>
+                        </div>
+                    </div>
+                    <div class="action_div">
+                        <button class="edit-btn">EDIT</button>
+                        <button class="delete-btn">DELETE</button>
+                    </div>
                 </div>
 
-                <div class="course_grid" id="courseGrid"></div>
+                <div class="course_card">
+                    <div class="title_info">
+                        <h3 id="course_name">
+                            Data Science
+                        </h3>
+                        <h4 id="course_body">
+                            Complete Data Science course, All necessary libraries
+                        </h4>
+                    </div>
+                    <div class="course_info">
+                        <h3 hidden id="real_course_id">2</h3>
+                        <div class="duration_subcard">
+                            <h3 id="duration">6 Months</h3>
+                            <span id="d_span">Duration</span>
+                        </div>
+                        <div class="fees_subcard">
+                            <h3 id="fees">₹ <span>42000</span></h3>
+                            <span id="f_span">Fee</span>
+                        </div>
+                    </div>
+                    <div class="action_div">
+                        <button class="edit-btn">EDIT</button>
+                        <button class="delete-btn">DELETE</button>
+                    </div>
+                </div>
+
+                <div class="course_card">
+                    <div class="title_info">
+                        <h3 id="course_name">
+                            Java Full Stack Development
+                        </h3>
+                        <h4 id="course_body">
+                            Complete Java development with Spring Boot, Hibernate, and React
+                        </h4>
+                    </div>
+                    <div class="course_info">
+                        <h3 hidden id="real_course_id">3</h3>
+                        <div class="duration_subcard">
+                            <h3 id="duration">6 Months</h3>
+                            <span id="d_span">Duration</span>
+                        </div>
+                        <div class="fees_subcard">
+                            <h3 id="fees">₹ <span>42000</span></h3>
+                            <span id="f_span">Fee</span>
+                        </div>
+                    </div>
+                    <div class="action_div">
+                        <button class="edit-btn">EDIT</button>
+                        <button class="delete-btn">DELETE</button>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="modal_overlay" id="modalOverlay">
-        <div class="modal_content">
-            <h2>Create New Course</h2>
-            <form id="addCourseForm">
-                <div class="form_group"><label>Course Title</label><input type="text" id="newTitle" required></div>
-                <div class="form_group"><label>Domain</label><input type="text" id="newDomain" required></div>
-                <div class="form_group"><label>Description</label><textarea id="newDesc" rows="2" required></textarea></div>
-                <div class="form_group"><label>Fee (₹)</label><input type="text" id="newFee" placeholder="e.g. 40,000" required></div>
-                <div class="modal_btns">
-                    <button type="button" class="close_btn" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="save_btn">Add Course</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-     </main>
-     
-     <%
-	if(session.getAttribute("userrole")==null){
-%>
-	<script type="text/javascript">
-		alert("Access Denied! Please login first.")
-		window.location.href="../admin_authentication.jsp"
-	</script>
-	<%
-	return;
-	}
-	%>
-	<script>
+    </main>
+
+    <% if(session.getAttribute("userrole")==null){ %>
+            <script type="text/javascript">
+                alert("Access Denied! Please login first.")
+                window.location.href = "../admin_authentication.jsp"
+            </script>
+            <% return; } %>
+    <script>
         const menuBtn = document.getElementById("menuBtn");
         const navbar_and_logout_section = document.getElementById("navbar_and_logout_section");
 
@@ -120,98 +200,83 @@
                 navbar_and_logout_section.classList.remove("show");
             }
         });
-        
-        const logout_btn=document.getElementById("logout_btn");
-        logout_btn.addEventListener('click',()=>{
-        	if(confirm("Do you realy want to Logout"))
-        		window.location.href="${pageContext.request.contextPath}/LogoutServlet";
+
+        const logout_btn = document.getElementById("logout_btn");
+        logout_btn.addEventListener('click', () => {
+            if (confirm("Do you realy want to Logout"))
+                window.location.href = "${pageContext.request.contextPath}/LogoutServlet";
         })
-        
-        
-        
-        
-        const courses = [
-            { title: "Java Full Stack Development", domain: "Java Development", desc: "Complete Java development with Spring Boot, Hibernate, and React", students: 324, duration: "6 Months", fee: "₹45,000", modules: 12 },
-            { title: "Python & Django", domain: "Web Development", desc: "Python programming with Django framework and REST APIs", students: 256, duration: "4 Months", fee: "₹38,000", modules: 10 },
-            { title: "Web Development", domain: "Frontend Development", desc: "HTML, CSS, JavaScript, and modern frameworks", students: 198, duration: "3 Months", fee: "₹35,000", modules: 8 },
-            { title: "Data Science", domain: "Data Analytics", desc: "Python, Machine Learning, Data Analysis, and Visualization", students: 145, duration: "5 Months", fee: "₹50,000", modules: 14 },
-            { title: "DevOps Engineering", domain: "Cloud & DevOps", desc: "Docker, Kubernetes, Jenkins, AWS, and CI/CD pipelines", students: 87, duration: "4 Months", fee: "₹42,000", modules: 11 },
-            { title: "Mobile App Development", domain: "Mobile Development", desc: "React Native and Flutter for cross-platform development", students: 112, duration: "5 Months", fee: "₹48,000", modules: 13 }
-        ];
-        function renderCourses() {
-            const grid = document.getElementById('courseGrid');
-            document.getElementById('statTotal').innerText = courses.length; // Update stat counter
-            grid.innerHTML = courses.map((course, index) => `
-                <div class="course_card">
-                    <div class="active_badge">Active</div>
-                    <div class="icon_box"><i class='bx bx-book-open'></i></div>
-                    <h3>${course.title}</h3>
-                    <p class="desc">${course.desc}</p>
-                    <div class="domain_tag">${course.domain}</div>
-                    
-                    <div class="metrics_row">
-                        <div class="m_item">
-                            <i class='bx bx-group'></i>
-                            <strong>${course.students}</strong>
-                            <span>Students</span>
-                        </div>
-                        <div class="m_item">
-                            <i class='bx bx-time-five'></i>
-                            <strong>${course.duration.split(' ')[0]}</strong>
-                            <span>${course.duration.split(' ')[1] || 'Months'}</span>
-                        </div>
-                        <div class="m_item">
-                            <i class='bx bx-rupee'></i>
-                            <strong>${course.fee.replace('₹','')}</strong>
-                            <span>Fee</span>
-                        </div>
-                    </div>
 
-                    <p class="module_text">${course.modules} Modules</p>
 
-                    <div class="card_btns">
-                        <button class="edit_btn"><i class='bx bx-edit-alt'></i> Edit</button>
-                        <button class="del_btn" onclick="deleteCourse(${index})"><i class='bx bx-trash'></i></button>
-                    </div>
-                </div>
-            `).join('');
-        }
-        function openModal() {
-            document.getElementById('modalOverlay').style.display = 'flex';
-        }
-        function closeModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
-        document.getElementById('addCourseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const newCourse = {
-                title: document.getElementById('newTitle').value,
-                domain: document.getElementById('newDomain').value,
-                desc: document.getElementById('newDesc').value,
-                students: 0,
-                duration: "6 Months", 
-                fee: "₹" + document.getElementById('newFee').value,
-                modules: 10
-            };
-            courses.unshift(newCourse);
-            renderCourses();
-            closeModal();
-            this.reset();
-        });
-        function deleteCourse(index) {
-            if(confirm("Delete this course?")) {
-                courses.splice(index, 1);
-                renderCourses();
+        const addNewCourseBtn = document.getElementById("add_new_course_btn");
+        const addCourseFormContainer = document.getElementById("add_course_form");
+        const editCourseForm = document.getElementById("edit_course_form");
+
+        addNewCourseBtn.addEventListener('click', () => {
+            addCourseFormContainer.classList.toggle("hidden");
+            if (!addCourseFormContainer.classList.contains("hidden")) {
+                document.getElementById("new_course_name").focus();
+                addCourseFormContainer.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
             }
-        }
-        document.addEventListener('DOMContentLoaded', renderCourses);
-        document.getElementById('courseSearch').addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            document.querySelectorAll('.course_card').forEach(card => {
-                const title = card.querySelector('h3').innerText.toLowerCase();
-                card.style.display = title.includes(val) ? 'block' : 'none';
-            });
         });
+
+        const addCourseSubmitBtn = document.getElementById("add_course_btn");
+        addCourseSubmitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            addCourseFormContainer.classList.add("hidden");
+        });
+
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+
+            if (target && target.classList.contains('edit-btn')) {
+                e.preventDefault();
+                const card = target.closest('.course_card');
+
+                const id = card.querySelector("#real_course_id").innerText;
+                const name = card.querySelector("#course_name").innerText.trim();
+                const desc = card.querySelector("#course_body").innerText.trim();
+                const duration = card.querySelector("#duration").innerText;
+                const fees = card.querySelector("#fees span").innerText;
+
+                document.getElementById("real_c_id").value = id;
+                document.getElementById("edit_course_name").value = name;
+                document.getElementById("edit_course_fees").value = fees;
+                document.getElementById("edit_course_duration").value = duration;
+                document.getElementById("edit_course_description").value = desc;
+
+                editCourseForm.classList.remove("hidden");
+                editCourseForm.style.display = "block";
+
+                requestAnimationFrame(() => {
+                    editCourseForm.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    document.getElementById("edit_course_name").focus();
+                });
+
+            } else if (target && target.classList.contains('delete-btn')) {
+                e.preventDefault();
+                const card = target.closest('.course_card');
+                const id = card.querySelector("#real_course_id").innerText;
+                const courseName = card.querySelector("#course_name").innerText.trim();
+
+                if (confirm(`Delete "${courseName}"?`)) {
+                    window.location.href = `DeleteCourseServlet?course_id=${id}`;
+                }
+            }
+        });
+
+        const updateCourseBtn = document.getElementById("update_course_btn")
+        updateCourseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            editCourseForm.classList.add("hidden");
+        })
+
     </script>
 </body>
 

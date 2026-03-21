@@ -10,7 +10,7 @@
     }
 .content-container {
       width: 100%;
-      max-width: 1100px;
+      max-width:calc(100vw - 240px);
     }
     
     .profile-card {
@@ -39,6 +39,7 @@
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
+
     }
 
     .avatar-box img {
