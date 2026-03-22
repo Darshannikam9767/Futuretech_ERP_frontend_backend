@@ -47,53 +47,29 @@
             <h2 id="logout_btn">Logout</h2>
         </div>
     </div>
-    <main class="main_content">
-        <div class="content-container">
-      <div class="profile-card">
-        <div class="avatar-box" id="avatarBox">
-          <img id="profileImg">
-          <span id="avatarText">SM</span>
-          <input type="file" id="imgUpload" hidden>
+    <main class="main_profile_content">
+    <div class="profile_container">
+        
+        <div class="profile_logo_div">
+            <h1 id="profile_logo_div_name"></h1>
         </div>
-        <div class="user-info">
-          <h3 id="displayName">Shubhada Mate</h3>
-          <p id="displayEmail">shubhada@123.com</p>
-          <div class="domain-text">
-            <p id="displayDomain">Domain:Full Stack Development</p>
-          </div>
-          <br>
-          <button class="edit-btn" id="editBtn">Edit Profile</button>
-        </div>
-      </div>
 
-      <div class="info-panel">
-        <div class="row">
-          <label>Student Name</label>
-          <input type="text" value="Shubhada Mate" disabled>
+        <div class="profile_info_section">
+            <h1 class="student_name"></h1>
+            <p class="course_name"></p>
+            
+            <div class="contact_pills">
+                <span class="pill">
+                    Email ID: <strong id="email_id"></strong>
+                </span>
+                <span class="pill">
+                    Contact No: +91 <strong id="contact_number"></strong>
+                </span>
+            </div>
         </div>
-        <div class="row">
-          <label>Domain</label>
-          <input type="text" value="Full Stack Development" disabled>
-        </div>
-        <div class="row">
-          <label>Batch</label>
-          <input type="text" value="Spring 2026" disabled>
-        </div>
-        <div class="row">
-          <label>Contact Number</label>
-          <input type="text" value="+91 1234567890" disabled>
-        </div>
-        <div class="row">
-          <label>Student E-Mail</label>
-          <input type="text" value="shubhada@123.com" disabled>
-        </div>
-        <div class="row">
-          <label>Account Status</label>
-          <input type="text" value="Active" disabled style="color: #4ade80;">
-        </div>
-      </div>
+        
     </div>
-    </main>
+</main>
 
 
 	<%

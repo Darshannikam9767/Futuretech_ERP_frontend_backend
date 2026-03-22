@@ -111,6 +111,7 @@ body {
         margin-left: 0 !important;
         width: 100% !important;
         gap: 20px !important;
+        box-sizing: border-box;
     }
 
     #design_card,
