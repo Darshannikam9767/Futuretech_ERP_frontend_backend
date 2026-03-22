@@ -41,7 +41,7 @@ public class AdminStudentDirectory extends HttpServlet {
 		try(Connection con = DBConnection.getConnection()){
 			Statement st = con.createStatement();
 				
-			ResultSet rsCourses = st.executeQuery("select course_name from courses");
+			ResultSet rsCourses = st.executeQuery("select course_name from courses where is_active = true");
 			out.println("<script>");
 			while(rsCourses.next()) {
 				String courseName=rsCourses.getString("course_name");

@@ -1,9 +1,9 @@
-#total_students {
-    color: var(--btn_g_right);
+#total_active_courses {
+    color: #2bf02b;
 }
 
-#total_domains {
-    color: var(--btn_g_left);
+#total_students {
+    color: var(--btn_g_right);
 }
 
 #top_title_and_button {
@@ -228,7 +228,7 @@
 .edit-btn,
 .delete-btn {
     /* background-color: var(--btn_g_left); */
-    padding: 12px 30px;
+    padding: 12px 12px;
     border-radius: 15px;
     color: var(--white_text);
     font-size: 15px;
@@ -275,4 +275,5 @@
         text-align: center;
         padding: 10px;
     }
+
 }
