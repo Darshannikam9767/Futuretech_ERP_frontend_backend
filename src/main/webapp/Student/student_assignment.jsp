@@ -47,117 +47,26 @@
             <h2 id="logout_btn">Logout</h2>
         </div>
     </div>
-    <main class="main_content">
-        <div class="container">
-
-  <!-- UPLOAD SUBMISSION -->
-  <div class="card">
-    <h2>Upload Submission</h2>
-
-    <div class="upload-box">
-      Drop your files here or click to browse <br>
-      <small>Supports PDF, DOC, ZIP (Max 10MB)</small><br><br>
-
-      <input type="file" id="file">
-    </div>
-
-    <button onclick="submitAssignment()">Submit Assignment</button>
-  </div>
-
-  <!-- TASKS DUE -->
-  <div class="card">
-    <h2>Tasks Due</h2>
-    <div id="taskList"></div>
-  </div>
-
-</div>
-
-<script>
-/* ===========================
-   TASK DATA
-=========================== */
-let tasks = [
-  {
-    name: "Java Collections Framework",
-    desc: "Implement ArrayList, LinkedList, HashMap with examples",
-    deadline: "2026-02-05",
-    status: "Pending"
-  },
-  {
-    name: "Exception Handling Exercise",
-    desc: "Create banking app with proper exception handling",
-    deadline: "2026-02-10",
-    status: "Pending"
-  },
-  {
-    name: "OOP Principles Project",
-    desc: "Design a Library Management System using OOP concepts",
-    deadline: "2026-02-01",
-    status: "Submitted"
-  },
-  {
-    name: "Core Java Basics",
-    desc: "Exercises on data types, operators, control flow",
-    deadline: "2026-01-30",
-    status: "Reviewed",
-    grade: "A+"
-  }
-];
-
-/* ===========================
-   DISPLAY TASKS
-=========================== */
-function displayTasks() {
-  let taskDiv = document.getElementById("taskList");
-  taskDiv.innerHTML = "";
-
-  tasks.forEach(t => {
-    let badgeText = t.status;
-
-    if (t.grade) {
-      badgeText += " ✔ Grade: " + t.grade;
-    }
-
-    taskDiv.innerHTML += `
-      <div class="task">
-        <h4>${t.name}</h4>
-        <p>${t.desc}</p>
-        <small>Deadline: ${t.deadline}</small><br>
-        <span class="badge ${t.status.toLowerCase()}">${badgeText}</span>
-      </div>
-    `;
-  });
-}
-
-displayTasks();
-
-/* ===========================
-   SUBMIT FUNCTION
-=========================== */
-function submitAssignment() {
-  const fileInput = document.getElementById("file");
-  const file = fileInput.files[0];
-
-  if (!file) {
-    alert("Please select a file to submit!");
-    return;
-  }
-
-  const newTask = {
-    name: file.name,
-    desc: "Uploaded file",
-    deadline: "Today",
-    status: "Submitted"
-  };
-
-  tasks.push(newTask);
-  displayTasks();
-
-  alert("File submitted successfully: " + file.name);
-
-  fileInput.value = "";
-}
-</script>
+    <main class="assignment_main_content">
+        <div class="upload_assignment_section" id="assignment_design_card">
+                <h2>Upload Submission</h2>
+                <div class="assignment_drop_area">
+                    <p id ="name"> Click to browse</p>
+                    <span>Supports PDF, DOC, ZIP (Max 10MB)</span>
+                    <input type="file" id="select_file" accept=".pdf,.doc,.docx,.zip">
+                </div>
+                <button class="assignment_submit_btn">Submit Assignment</button>
+           </div>
+           
+           <div class="task_due" id="assignment_design_card">
+                <h2>Task Due</h2>
+                <div id="due_subcard">
+                    <h3>Java Collection Framework</h3>
+                    <p id="description">Implement ArrayList, LinkedList, and HashMap with custom examples</p>
+                    <span id="assignment_time_left">5 days left</span>
+                    <p id="assignment_status">Pending</p>
+                </div>
+            </div>
     </main>
 
 <%
@@ -172,6 +81,22 @@ function submitAssignment() {
 	}
 	%>
     <script>
+    
+    	const dropArea = document.querySelector('.assignment_drop_area');
+        const select_file = document.getElementById('select_file');
+
+        dropArea.addEventListener('click', () => {
+            select_file.click()
+        })
+
+        select_file.addEventListener('change', function () {
+            if (this.files.length > 0) {
+               document.getElementById("name").innerText=this.files[0].name;
+            }
+        });
+    
+    
+    
         const logout_btn=document.getElementById("logout_btn");
         logout_btn.addEventListener('click',()=>{
         	if(confirm("Do you realy want to Logout"))

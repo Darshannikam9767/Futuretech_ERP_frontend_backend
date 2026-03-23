@@ -1,117 +1,96 @@
-body {
-  margin: 0;
-  padding: 40px;
-  font-family: Arial, sans-serif;
-  background: #0b1220;
-  color: white;
+.assignment_main_content{
+	margin-left: 245px;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+	padding:20px;
+    width: calc(100vw - 245px);
+    min-height: calc(100vh - 90px);
 }
 
-/* ===========================
-   MAIN CONTAINER
-=========================== */
-.container {
-  max-width: 900px;
-  margin: auto;
+#assignment_design_card{
+	background-color: var(--card_bg_color);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    transition: .1s;
+    max-height:max-content;
 }
 
-/* ===========================
-   CARD DESIGN
-=========================== */
-.card {
-  background: #111827;
-  border-radius: 20px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+#assignment_design_card:hover {
+    border: 1px solid var(--card_hover_border_color);
 }
 
-.card h2 {
-  margin-bottom: 15px;
+.assignment_submit_btn{
+	 padding: 18px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white_text);
+    background-color: var(--btn_g_left);
+    transition: .1s;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    cursor: pointer;
 }
 
-/* ===========================
-   UPLOAD BOX
-=========================== */
-.upload-box {
-  border: 2px dashed #334155;
-  border-radius: 18px;
-  padding: 45px;
-  text-align: center;
-  margin-top: 15px;
-  color: #94a3b8;
+.assignment_drop_area{
+	text-align: center;
+    background-color: var(--navbar_bg_color);
+    padding: 40px;
+    border: 2.5px dashed var(--gray_text);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    cursor: pointer;
+    transition: .2s;
 }
 
-.upload-box input {
-  margin-top: 15px;
-  color: white;
+.assignment_drop_area:hover {
+    border: 2px solid var(--gray_text);
+    border-radius: 20px;
 }
 
-/* ===========================
-   BUTTON STYLE
-=========================== */
-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  background: linear-gradient(90deg, #7c3aed, #38bdf8);
-  color: white;
-  transition: 0.3s;
+.assignment_drop_area p {
+    color: var(--white_text);
+    font-size: 19px;
 }
 
-button:hover {
-  opacity: 0.9;
+.assignment_drop_area span {
+    color: var(--gray_text);
 }
 
-/* ===========================
-   TASK BOX DESIGN
-=========================== */
-.task {
-  background: #1f2937;
-  padding: 18px;
-  border-radius: 16px;
-  margin-top: 15px;
+#due_subcard{
+	background-color: var(--navbar_bg_color);
+    padding: 20px;
+    border: 1px solid var(--gray_text);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px var(--card_shadow);
 }
 
-.task h4 {
-  font-size: 16px;
-  margin: 0 0 6px;
+#due_subcard h3 {
+    color: var(--white_text);
+    font-size: 16px;
+    letter-spacing: .5px;
 }
 
-.task p {
-  font-size: 13px;
-  color: #94a3b8;
-  margin: 0 0 8px;
+#due_subcard span {
+    color: var(--white_text);
 }
 
-.task small {
-  color: #94a3b8;
-}
-
-/* ===========================
-   BADGES (STATUS)
-=========================== */
-.badge {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* Status Colors */
-.pending {
-  background: #f59e0b;
-}
-
-.submitted {
-  background: #0ea5e9;
-}
-
-.reviewed {
-  background: #22c55e;
+@media (max-width : 768px){
+	.assignment_main_content {
+        margin-left: 0 !important; 
+        width: 100% !important;  
+        padding: 15px;           
+    }
 }

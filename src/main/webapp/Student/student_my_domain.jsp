@@ -47,57 +47,32 @@
             <h2 id="logout_btn">Logout</h2>
         </div>
     </div>
-    <main class="main_content">
-        	   <!-- Course Card -->
-          <section class="card">
-            <h2>
-              <i class="fa-solid fa-layer-group"></i>
-              ${courseName}
-            </h2>
-            <p>Batch: ${batch}</p>
-
-            <div class="grid">
-              <div class="box">
-                <i class="fa-solid fa-chalkboard-user"></i><br>
-                Instructor<br><b>${instructor}</b>
-              </div>
-
-              <div class="box">
-                <i class="fa-solid fa-clock"></i><br>
-                Duration<br><b>${duration}</b>
-              </div>
-
-              <div class="box">
-                <i class="fa-solid fa-calendar-days"></i><br>
-                Start Date<br><b>${startDate}</b>
-              </div>
-
-              <div class="box">
-                <i class="fa-solid fa-calendar-check"></i><br>
-                End Date<br><b>${endDate}</b>
-              </div>
-            </div>
-          </section>
-
-          <!-- Skills Section -->
-          <section class="card">
-            <h3>
-              <i class="fa-solid fa-code"></i>
-              Skills & Technologies Covered
-            </h3>
-
-            <div class="tags">
-              <% List<String> skills = (List<String>) request.getAttribute("skills");
-                  if(skills != null){
-                  for(String skill : skills){
-                  %>
-                  <span>
-                    <i class="fa-solid fa-check"></i>
-                    <%= skill %>
-                  </span>
-                  <% } } %>
-            </div>
-          </section>
+    <main class="main_domain_content">
+       	<div class="domain_card" id="domain_design_card">
+       			<h1 id="course_title">Java Full Stack Development</h1>
+       	
+       			<div id="info_div">
+       				<div class="start_date_card">
+       					<h3>Start Date</h3>
+       					<span id="start_date">2025-12-1</span>
+       				</div>
+       	
+       				<div class="duration_card">
+       					<h3>Duration</h3>
+       					<span id="duration">6 Months</span>
+       				</div>
+       				
+       				<div class="fees_card">
+       					<h3>Fees</h3>
+       					<span id="fees">6000</span>
+       				</div>
+       				
+       				<div class="description_card">
+       					<h3>Description</h3>
+       					<span id="description">ouiagsodfihdsaihfoiuasdhioufhaosidhfilnasdicnipuhaspoduhfpuhpsdhfoiusdaffhipasudhfuhasdoncfnapuosd9hfouihasdohfopasdufhashdfpohnaspdhfuasdhfahsdufhasudipfhapsdhfpuoashdofuphaspdufhpasuhdfpuohaspudhfsad</span>
+       				</div>
+       		</div>
+       	</div>
     </main>
 	<%
 	if(session.getAttribute("userrole")==null){
