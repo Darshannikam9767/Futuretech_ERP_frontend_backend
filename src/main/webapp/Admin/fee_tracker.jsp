@@ -9,6 +9,7 @@
     <title>Futuretech | Admin Dashboard</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/fee_tracker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
 </head>
 
@@ -50,74 +51,94 @@
         </div>
     </div>
     
-    <main class="main_content">
-     	<div class="cards">
-      <div class="card">
-        <h3>Total Revenue</h3>
-        <p id="totalRevenue">₹1,50,000</p>
-      </div>
-      <div class="card">
-        <h3>Collected</h3>
-        <p id="totalCollected">₹1,00,000</p>
-      </div>
-      <div class="card">
-        <h3>Pending</h3>
-        <p id="totalPending">₹50,000</p>
-      </div>
-    </div>
+    <main class="main_content" id="main_fee_content">
+    
+     	<div class="fee_info_pannel">
+            <div class="total_revenue fee_pannel_subcard">
+                <p>Total Revenue</p>
+                <h1 id="total_revenue">23000</h1>
+            </div>
 
-    <!-- ADD STUDENT FORM -->
-    <h2>Add Student</h2>
-    <div class="form">
-      <input type="text" id="studentName" placeholder="Student Name">
-      <input type="text" id="course" placeholder="Course">
-      <input type="number" id="totalFee" placeholder="Total Fee">
-      <input type="number" id="paidFee" placeholder="Paid Amount">
-      <input type="number" id="installments" placeholder="Installments (e.g. 1/3)">
-      <input type="date" id="nextDue">
-      <button onclick="addStudent()">Add Student</button>
-    </div>
+            <div class="total_collected fee_pannel_subcard">
+                <p>Collected</p>
+                <h1 id="total_collected">₹ <span>12000</span></h1>
+            </div>
 
-    <h2>Student Fees</h2>
+            <div class="pending_fees fee_pannel_subcard">
+                <p>Pending Fees</p>
+                <h1 id="total_pending_fees">₹ <span>45000</span></h1>
+            </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Student</th>
-          <th>Course</th>
-          <th>Total Fee</th>
-          <th>Paid</th>
-          <th>Balance</th>
-          <th>Installments</th>
-          <th>Next Due</th>
-          <th>Status</th>
-        </tr>
-      </thead>
+        </div>
+     	
+     	
+     	<div class="fee_tracker show_add_payment_form">
+            <div id="top_title_and_button">
+                <h3>Fee Tracker - Detailed View</h3>
+            </div>
+            
+            <div class="edit_form show_edit_form">
+                <form action="" method="post">
+                	<input type="hidden" name="real_student_id" id="edit_Student_id">
+                    <input type="text" name="student_name" id="student_name" placeholder="Student Name" readonly>
+                    <input type="text" name="paid_fee"  id="new_fees" placeholder="Paid Fees">
+                    <button id="update_btn" type="submit">Update Payment</button>
+                </form>
+            </div>
+            <div class="enable_scroll student_fee_table">
+                <table>
+                    <thead>
+                        <tr>
+                        	<th hidden>
+                        		Real Student ID
+                        	</th>
+                        	<th> 
+                        		ID
+                        	</th>
+                            <th>
+                                Student Name
+                            </th>
+                            <th>
+                                Course
+                            </th>
+                            <th>
+                            	Total Fee
+                            </th>
+                            <th>
+                                Paid
+                            </th>
+                            <th>
+                                Balance
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Actions
+                            </th>
 
-      <tbody id="studentTable">
-        <tr>
-          <td>sakshi kharat</td>
-          <td>Java Full Stack</td>
-          <td>₹45,000</td>
-          <td>₹45,000</td>
-          <td>₹0</td>
-          <td>3/3</td>
-          <td>-</td>
-          <td class="paid">Paid</td>
-        </tr>
-
-        <tr>
-          <td>sonali mahale</td>
-          <td>Python & Django</td>
-          <td>₹38,000</td>
-          <td>₹25,000</td>
-          <td>₹13,000</td>
-          <td>2/3</td>
-          <td>2028-02-15</td>
-          <td class="partial">Partial</td>
-        </tr>
-      </tbody>
-    </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                    		<td hidden>100</td>
+                    		<td>1</td>
+                    		<td>Amit Kumar</td>
+                    		<td>Java Full Stack</td>
+                    		<td>$45000</td>
+                    		<td>$20000</td>
+                    		<td>25000</td>
+                    		<td>Partial</td>
+                    		<td>
+                    			<div class='action_div'>
+    	                			<i class='fa-solid fa-pen edit'></i>
+    	                		</div>
+    	                	</td>
+                    	</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
      </main>
      
      
@@ -154,58 +175,27 @@
         })
         
         
+        const mainDashboard = document.getElementById("main_fee_content");
+		const editForm = document.querySelector(".edit_form");
+
+		if (mainDashboard) {
+    			mainDashboard.addEventListener('click', (event) => {
+      
+        		const btn = event.target.closest(".edit");
+
+        		if (btn) {
+            		const row = btn.closest("tr");
+            
+           			document.getElementById("edit_Student_id").value=row.cells[0].innerText.trim();
+           			document.getElementById("student_name").value=row.cells[2].innerText;
+           			document.getElementById("new_fees").value=row.cells[5].innerText;
+         		editForm.style.display = "flex";
+            		editForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        			}
+    			});
+		}
         
         
-        function addStudent() {
-  const name = document.getElementById("studentName").value;
-  const course = document.getElementById("course").value;
-  const totalFee = parseInt(document.getElementById("totalFee").value);
-  const paidFee = parseInt(document.getElementById("paidFee").value);
-  const installments = document.getElementById("installments").value;
-  const nextDue = document.getElementById("nextDue").value;
-
-  if (!name || !course || !totalFee || !paidFee) {
-    alert("Please fill all required fields");
-    return;
-  }
-
-  const balance = totalFee - paidFee;
-
-  let status = "Partial";
-  let statusClass = "partial";
-
-  if (balance === 0) {
-    status = "Paid";
-    statusClass = "paid";
-  }
-
-  const table = document.getElementById("studentTable");
-
-  const row = document.createElement("tr");
-
-  row.innerHTML = `
-    <td>${name}</td>
-    <td>${course}</td>
-    <td>₹${totalFee.toLocaleString()}</td>
-    <td>₹${paidFee.toLocaleString()}</td>
-    <td>₹${balance.toLocaleString()}</td>
-    <td>${installments}</td>
-    <td>${nextDue || "-"}</td>
-    <td class="${statusClass}">${status}</td>
-  `;
-
-  table.appendChild(row);
-
-  // Clear form
-  document.getElementById("studentName").value = "";
-  document.getElementById("course").value = "";
-  document.getElementById("totalFee").value = "";
-  document.getElementById("paidFee").value = "";
-  document.getElementById("installments").value = "";
-  document.getElementById("nextDue").value = "";
-
-  alert("Student Added Successfully ✅");
-}
     </script>
 </body>
 

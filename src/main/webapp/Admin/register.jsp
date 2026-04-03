@@ -48,8 +48,79 @@
             <h2 id="logout_btn">Logout</h2>
         </div>
     </div>
-    <main class="main_content">
-     	<h1>Register Section</h1>
+    <main class="main_wrapper">
+     	<div class="registration-card">
+            <% if("success".equals(request.getParameter("msg"))) { %>
+                <div style="color: #2ecc71; text-align: center; margin-bottom: 15px; font-weight: bold;">Registration Successful!</div>
+            <% } %>
+            <% if("error".equals(request.getParameter("msg"))) { %>
+                <div style="color: #ff4d4d; text-align: center; margin-bottom: 15px; font-weight: bold;">Error! Please check Console.</div>
+            <% } %>
+            
+            <div class="switch-container">
+                <div class="switch-toggle" id="switch-toggle"></div>
+                <button type="button" class="switch-btn active-btn" id="student-tab" onclick="showForm('student')">Student</button>
+                <button type="button" class="switch-btn" id="admin-tab" onclick="showForm('admin')">Admin</button>
+            </div>
+
+            <div id="student-form-box">
+                <h2 class="form-header">New Student Enrollment</h2>
+                <form action="AdminRegister" method="post">
+                    <input type="hidden" name="formType" value="student">
+                    <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" id="auto_sid" name="sid" readonly style="background: #2c2c2c; color: #aaa;">
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact</label>
+                        <input type="text" name="contact" placeholder="Enter Contact Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Domain</label>
+                        <select name="domain">
+                            <option value="Java Full Stack">Java Full Stack</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Data Science">Data Science</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="reset" class="cancel-btn" onclick="generateSID()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="admin-form-box" style="display: none;">
+                <h2 class="form-header">New Admin Registration</h2>
+                <form action="AdminRegister" method="post">
+                    <input type="hidden" name="formType" value="admin">
+                    <div class="form-group">
+                        <label>Admin Name</label>
+                        <input type="text" name="admin_name" placeholder="Enter Admin Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="admin_email" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="admin_pass" placeholder="Create Password" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="submit-btn">Register Admin</button>
+                        <button type="reset" class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
      </main>
      
      
@@ -84,6 +155,36 @@
         	if(confirm("Do you realy want to Logout"))
         		window.location.href="${pageContext.request.contextPath}/LogoutServlet";
         })
+        
+        
+        
+        function generateSID() {
+            const date = new Date();
+            const timestamp = date.getDate().toString() + (date.getMonth() + 1).toString() + date.getSeconds().toString() + Math.floor(Math.random() * 10);
+            document.getElementById('auto_sid').value = "STU" + timestamp;
+        }
+
+        function showForm(role) {
+            const sBox = document.getElementById('student-form-box');
+            const aBox = document.getElementById('admin-form-box');
+            const toggle = document.getElementById('switch-toggle');
+            const sTab = document.getElementById('student-tab');
+            const aTab = document.getElementById('admin-tab');
+
+            if (role === 'admin') {
+                sBox.style.display = 'none';
+                aBox.style.display = 'block';
+                toggle.style.transform = 'translateX(100%)';
+                aTab.classList.add('active-btn');
+                sTab.classList.remove('active-btn');
+            } else {
+                sBox.style.display = 'block';
+                aBox.style.display = 'none';
+                toggle.style.transform = 'translateX(0)';
+                sTab.classList.add('active-btn');
+                aTab.classList.remove('active-btn');
+            }
+        }
     </script>
 </body>
 

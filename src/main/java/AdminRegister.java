@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import DataBase.DBConnection;
 
@@ -55,6 +56,35 @@ HttpSession session = request.getSession(false);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		String formType = request.getParameter("formType");
+
+        try (Connection con = DBConnection.getConnection()) {
+            if ("student".equals(formType)) {
+                String sql = "INSERT INTO students (name, contact, email, domain) VALUES (?, ?, ?, ?)";
+                
+                try (PreparedStatement ps = con.prepareStatement(sql)) {
+                    ps.setString(1, request.getParameter("name"));    // JSP: name="name"
+                    ps.setString(2, request.getParameter("contact")); // JSP: name="contact"
+                    ps.setString(3, request.getParameter("email"));   // JSP: name="email"
+                    ps.setString(4, request.getParameter("domain"));  // JSP: name="domain"
+                    ps.executeUpdate();
+                }
+            } else if ("admin".equals(formType)) {
+                String sql = "INSERT INTO admins (name, email, password) VALUES (?, ?, ?)";
+                try (PreparedStatement ps = con.prepareStatement(sql)) {
+                    ps.setString(1, request.getParameter("admin_name"));
+                    ps.setString(2, request.getParameter("admin_email"));
+                    ps.setString(3, request.getParameter("admin_pass"));
+                    ps.executeUpdate();
+                }
+            }
+//            response.sendRedirect("AdminRegister?msg=success");
+            
+        } catch (Exception e) {
+            e.printStackTrace(); 
+            response.sendRedirect("AdminRegister?msg=error");
+        }
 	}
 
 	/**

@@ -1,185 +1,112 @@
-@charset "UTF-8";
-:root {
-    --bg_color: #0f172a;
-    --card_bg_color: #151e31;
-    --card_border_color: #2c3346;
-    --card_shadow: #00000080;
-    --card_hover_border_color: #384158;
-    --white_text: #fff;
-    --gray_text: #99a1af;
-    --input_bg_color: #21293c;
-    --input_border_color: #38404f;
-    --btn_g_left: #923aea;
-    --btn_g_right: #2cd1ee;
-    --btn_text_color: #ffffff;
-    --navbar_bg_color: #1b2637;
-    --header_bg_color: #162033;
+.main_wrapper {
+    position: fixed;
+    top: 90px;
+    left: 240px;
+    width: calc(100% - 240px);
+    height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg_color);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+.registration-card {
+    background: var(--card_bg_color);
+    border: 1px solid var(--card_border_color);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px var(--card_shadow);
+    max-height: 85vh;
+    
+    overflow-y: auto !important; 
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.registration-card::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+}
+
+.switch-container {
+    width: 220px;
+    height: 44px;
+    background: var(--input_bg_color);
+    margin: 0 auto 25px;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    border: 1px solid var(--input_border_color);
+}
+
+.switch-toggle {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
+    left: 0;
+    top: 0;
+    transition: 0.3s ease;
+    border-radius: 30px;
+}
+
+.switch-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--gray_text);
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 5;
+    outline: none;
+}
+
+.active-btn { color: white; }
+
+.form-header { text-align: center; color: white; margin-bottom: 20px; font-size: 20px; }
+
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--gray_text); }
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    background: var(--input_bg_color);
+    border: 1px solid var(--input_border_color);
+    border-radius: 10px;
+    color: white;
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Poppins', Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    /* justify-content: center;
-    align-items: center; */
-    background-color: var(--bg_color);
-    /* background-color: #0f172a; */
-}
+.button-group { display: flex; gap: 12px; margin-top: 20px; }
 
-h1,
-h2 {
-    color: var(--white_text);
-    margin-bottom: 15px;
-}
-
-p,
-label {
-    color: var(--gray_text);
-    margin-bottom: 15px;
-}
-
-/* hr {
-    height: 2px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(90deg, var(--btn_g_left), var(--btn_g_right));
-    margin-top: -10px;
-    margin-bottom: 20px;
-    width: 100%;
-} */
-
-.logo_name {
-    width: 240px;
-    min-width: 240px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    background-color: var(--navbar_bg_color);
-    border: 1px solid var(--gray_text);
-    border-top: none;
-}
-
-.logo_name .name {
-    padding-left: 20px;
-    padding-top: 15px;
-}
-
-.heading_section {
+.submit-btn, .cancel-btn {
     flex: 1;
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    background-color: var(--header_bg_color);
-    border: 1px solid var(--gray_text);
-    border-top: none;
-    border-left: none;
-}
-
-.profile_logo {
-    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
-    padding: 15px;
-    border-radius: 50%;
-    color: var(--white_text);
-}
-
-.admin_container {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-}
-
-.navbar_section {
-    display: flex;
-}
-
-.navbar {
-    top: 90px;
-    left: 0;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--navbar_bg_color);
-    border: 1px solid var(--gray_text);
-    width: 240px;
-    min-width: 240px;
-    border-top: none;
-    height: calc(100vh - 180px);
-    padding: 30px 0px;
-}
-
-.navbar a {
-    text-decoration: none;
-    margin-bottom: 10px;
-    color: var(--white_text);
-    font-size: 18px;
-    padding: 10px 10px;
-    width: 200px;
-    margin-left: 20px;
-
-}
-
-.active {
-    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
-    padding-top: 13px;
-    padding-bottom: 13px;
-    padding-left: 20px;
-    border-radius: 15px;
-    color: var(--white_text);
-    font-size: 21px;
-    box-shadow: 0 10px 25px var(--card_shadow);
-    transition: 0.3s;
-
-}
-
-.active:hover {
-    box-shadow: 0 0 10px 1px var(--btn_g_right);
-
-
-}
-
-.deactive {
-    padding-left: 50px;
-    transition: .3s;
-}
-
-.deactive:hover {
-    background-color: var(--bg_color);
-    padding: 10px;
-    border-radius: 15px;
-    padding-left: 20px;
-}
-
-.logout_section {
-    display: flex;
-    background-color: var(--navbar_bg_color);
-    width: 240px;
-    min-width: 240px;
-    height: 90px;
-    border: 1px solid var(--gray_text);
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    position: absolute;
-    bottom: 0;
-}
-
-.logout_section h2 {
-    color: red;
-    text-shadow: none;
-    margin-left: -85px;
-    margin-top: 20px;
-    font-size: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+
+.submit-btn { background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right)); color: white; }
+.cancel-btn { background: transparent; border: 2px solid #ff4d4d; color: #ff4d4d; }
+.cancel-btn:hover { background: #ff4d4d; color: white; }
+
+@media screen and (max-width: 768px) {
+    .main_wrapper {
+        left: 0;
+        width: 100%;
+        top: 80px;
+        align-items: flex-start;
+        position: absolute;
+        height: auto;
+    }
+    .registration-card { max-width: 95%; margin-bottom: 40px; }
+    .button-group { flex-direction: column; }
 }
