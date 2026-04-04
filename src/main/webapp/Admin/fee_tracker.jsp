@@ -78,8 +78,8 @@
             </div>
             
             <div class="edit_form show_edit_form">
-                <form action="" method="post">
-                	<input type="hidden" name="real_student_id" id="edit_Student_id">
+                <form action="AdminUpdatePayment" method="post">
+                	    <input type="text" hidden name="real_student_id" id="edit_Student_id">
                     <input type="text" name="student_name" id="student_name" placeholder="Student Name" readonly>
                     <input type="text" name="paid_fee"  id="new_fees" placeholder="Paid Fees">
                     <button id="update_btn" type="submit">Update Payment</button>
@@ -188,11 +188,32 @@
             
            			document.getElementById("edit_Student_id").value=row.cells[0].innerText.trim();
            			document.getElementById("student_name").value=row.cells[2].innerText;
-           			document.getElementById("new_fees").value=row.cells[5].innerText;
+           			
+           			const rawFees = row.cells[5].innerText;
+                    const numericFees = rawFees.replace(/[^\d.]/g, ''); 
+                    document.getElementById("new_fees").value = numericFees;
+           			
+           			
          		editForm.style.display = "flex";
             		editForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            		setTimeout(() => {
+                        document.getElementById("new_fees").focus();
+                    }, 500);
         			}
     			});
+		}
+		
+		const urlParams = new URLSearchParams(window.location.search);
+		const updateStatus = urlParams.get('update');
+
+		if (updateStatus === 'success') {
+		    alert("✅ Payment Updated Successfully!");
+		    // Clean the URL so the alert doesn't show again on refresh
+		    window.history.replaceState({}, document.title, window.location.pathname);
+		} else if (updateStatus === 'failed') {
+		    alert("❌ Error: Could not update payment. Please try again.");
+		} else if (urlParams.get('error') === 'invalid_format') {
+		    alert("⚠️ Please enter a valid number for the fees.");
 		}
         
         

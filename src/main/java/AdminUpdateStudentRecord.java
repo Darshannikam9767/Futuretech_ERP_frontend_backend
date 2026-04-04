@@ -26,7 +26,7 @@ public class AdminUpdateStudentRecord extends HttpServlet {
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int real_student_id= Integer.parseInt(request.getParameter("real_student_id"));
-    	String student_name=request.getParameter("student_name");
+		String student_name=request.getParameter("student_name");
 		String student_contact=request.getParameter("student_contact");
 		String student_email=request.getParameter("student_email");
 		String student_course=request.getParameter("student_course");

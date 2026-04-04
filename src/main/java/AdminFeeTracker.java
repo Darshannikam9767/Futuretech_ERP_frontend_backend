@@ -87,8 +87,8 @@ HttpSession session = request.getSession(false);
 
 	            // Build the row
 	            String row = "<tr>" +
-	                         "<td hidden>" + real_id + "</td>" + // Hidden ID for Edit logic
-	                         "<td>" + displayId + "</td>" +      // Visible Serial ID
+	                         "<td hidden>" + real_id + "</td>" +
+	                         "<td>" + displayId + "</td>" +      
 	                         "<td>" + name + "</td>" +
 	                         "<td>" + course + "</td>" +
 	                         "<td>₹ " + total + "</td>" +

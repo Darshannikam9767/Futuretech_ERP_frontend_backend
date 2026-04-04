@@ -21,6 +21,11 @@
     cursor: default;
 }
 
+.fee_pannel_subcard h1{
+	color: var(--white_text);
+    font-size: 25px;
+}
+
 #total_collected{
 	color:#2bf02b;
 }
