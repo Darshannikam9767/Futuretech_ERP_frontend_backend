@@ -202,7 +202,7 @@
         			}
     			});
 		}
-		
+		//displaying alert
 		const urlParams = new URLSearchParams(window.location.search);
 		const updateStatus = urlParams.get('update');
 
