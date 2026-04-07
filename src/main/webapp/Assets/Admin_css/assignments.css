@@ -1,185 +1,211 @@
-@charset "UTF-8";
-:root {
-    --bg_color: #0f172a;
-    --card_bg_color: #151e31;
-    --card_border_color: #2c3346;
-    --card_shadow: #00000080;
-    --card_hover_border_color: #384158;
-    --white_text: #fff;
-    --gray_text: #99a1af;
-    --input_bg_color: #21293c;
-    --input_border_color: #38404f;
-    --btn_g_left: #923aea;
-    --btn_g_right: #2cd1ee;
-    --btn_text_color: #ffffff;
-    --navbar_bg_color: #1b2637;
-    --header_bg_color: #162033;
+/* Main Card Container */
+.assignment_card {
+    background-color: var(--card_bg_color);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    transition: .1s;
+    max-height:max-content;
+    color:#ffffff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+.assignment_card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+
+#add_assignment_form form > div:first-child {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+#add_assignment_form input,
+#add_assignment_form select,
+#add_assignment_form textarea {
+    background-color: var(--input_bg_color);
+    border: 1px solid var(--input_border_color);
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: var(--white_text);
+    outline: none;
+    transition: 0.3s;
+    font-size: 16px;
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Poppins', Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    /* justify-content: center;
-    align-items: center; */
-    background-color: var(--bg_color);
-    /* background-color: #0f172a; */
-}
 
-h1,
-h2 {
-    color: var(--white_text);
-    margin-bottom: 15px;
-}
+#new_assignment_name { flex: 2; }   
+#courses { flex: 1.5; }            
+input[type="date"] { flex: 1; }     
 
-p,
-label {
-    color: var(--gray_text);
-    margin-bottom: 15px;
-}
 
-/* hr {
-    height: 2px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(90deg, var(--btn_g_left), var(--btn_g_right));
-    margin-top: -10px;
+#add_assignment_form textarea {
+    width: 100% !important;       
     margin-bottom: 20px;
+    resize: none;
+    min-height: 120px;
+}
+
+
+.form_footer_row {
+    display: flex;
+    justify-content: space-between; /* Pushes file to left, button to right */
+    align-items: center;           /* Centers them vertically */
     width: 100%;
-} */
-
-.logo_name {
-    width: 240px;
-    min-width: 240px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    background-color: var(--navbar_bg_color);
-    border: 1px solid var(--gray_text);
-    border-top: none;
+    margin-top: 10px;
 }
-
-.logo_name .name {
-    padding-left: 20px;
-    padding-top: 15px;
-}
-
-.heading_section {
-    flex: 1;
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    background-color: var(--header_bg_color);
-    border: 1px solid var(--gray_text);
-    border-top: none;
-    border-left: none;
-}
-
-.profile_logo {
-    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
-    padding: 15px;
-    border-radius: 50%;
-    color: var(--white_text);
-}
-
-.admin_container {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-}
-
-.navbar_section {
-    display: flex;
-}
-
-.navbar {
-    top: 90px;
-    left: 0;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--navbar_bg_color);
-    border: 1px solid var(--gray_text);
-    width: 240px;
-    min-width: 240px;
-    border-top: none;
-    height: calc(100vh - 180px);
-    padding: 30px 0px;
-}
-
-.navbar a {
-    text-decoration: none;
-    margin-bottom: 10px;
-    color: var(--white_text);
-    font-size: 18px;
-    padding: 10px 10px;
-    width: 200px;
-    margin-left: 20px;
-
-}
-
-.active {
-    background: linear-gradient(135deg, var(--btn_g_left), var(--btn_g_right));
-    padding-top: 13px;
-    padding-bottom: 13px;
-    padding-left: 20px;
-    border-radius: 15px;
-    color: var(--white_text);
-    font-size: 21px;
-    box-shadow: 0 10px 25px var(--card_shadow);
-    transition: 0.3s;
-
-}
-
-.active:hover {
-    box-shadow: 0 0 10px 1px var(--btn_g_right);
-
-
-}
-
-.deactive {
-    padding-left: 50px;
-    transition: .3s;
-}
-
-.deactive:hover {
-    background-color: var(--bg_color);
-    padding: 10px;
-    border-radius: 15px;
-    padding-left: 20px;
-}
-
-.logout_section {
-    display: flex;
-    background-color: var(--navbar_bg_color);
-    width: 240px;
-    min-width: 240px;
-    height: 90px;
-    border: 1px solid var(--gray_text);
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    position: absolute;
-    bottom: 0;
-}
-
-.logout_section h2 {
-    color: red;
-    text-shadow: none;
-    margin-left: -85px;
-    margin-top: 20px;
-    font-size: 20px;
+/* Styling the actual input box */
+#select_file {
+    background-color: var(--input_bg_color);
+    border: 1px dashed var(--input_border_color);
+    width: auto;
+    max-width: 350px;
+    padding: 8px;
+    margin-bottom: 0; /* Changed from 25px to 0 */
     cursor: pointer;
 }
+
+/* THE FIX: Styling the "Choose File" button inside the input */
+#select_file::file-selector-button {
+    background-color: #2d3748; /* Darker grey to stand out */
+    border: 1px solid var(--input_border_color);
+    color: var(--white_text);
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 15px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Hover effect for the internal button */
+#select_file::file-selector-button:hover {
+    background-color: #4a5568;
+    border-color: #805ad5; /* Purple highlight */
+}
+
+/* Hover effect for the whole dashed area */
+#select_file:hover {
+    border-color: #805ad5;
+    background-color: rgba(128, 90, 213, 0.05);
+}
+
+
+#add_assignment_btn {
+    background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+    padding: 14px 30px;
+    border-radius: 12px;
+    color: var(--white_text);
+    font-size: 18px;
+    font-weight: 600;
+    
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+#add_assignment_form form::after {
+    display: none;
+}
+
+#add_assignment_btn:hover {
+    transform:scale(0.97);
+    box-shadow: 0 0 10px 1px var(--btn_g_right);
+}
+
+#add_assignment_btn:active {
+    transform:scale(1.02);
+}
+
+
+#add_assignment_form input:focus,
+#add_assignment_form select:focus,
+#add_assignment_form textarea:focus {
+    border-color: var(--btn_g_right);
+
+}
+
+
+#add_assignment_form form::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media (max-width: 1024px) {
+
+	#add_assignment_btn{
+		font-size:16px;
+	}
+    #add_assignment_form input,
+    #add_assignment_form select ,
+    #add_assignment_form textarea{
+        width: 100%;
+    }
+}
+
+
+.submission_tracker_table{
+	background-color: var(--card_bg_color);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    transition: .1s;
+    max-height:max-content;
+}
+
+.submission_tracker_table h3 {
+    text-align: left;
+    padding: 10px;
+    color: var(--white_text);
+}
+
+.submission_tracker_table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.submission_tracker_table th,
+.submission_tracker_table td {
+    color: var(--white_text);
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--card_border_color);
+    text-align: left;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+
+.submission_tracker_table th {
+    color: var(--gray_text);
+}
+
+.submission_tracker_table tbody tr:hover {
+    transition: .2s;
+    background-color: var(--navbar_bg_color);
+}
+
+.enable_scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.submission_tracker_table{
+	overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+

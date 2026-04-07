@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Admin_css/assignments.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
+	<link rel="preload" href="${pageContext.request.contextPath}/Assets/Admin_css/admin_dashboard.css" as="style">
+	<link rel="preload" href="${pageContext.request.contextPath}/Assets/images/logo.png" as="image">
 </head>
 
 <body>
@@ -51,7 +53,67 @@
     </div>
     
     <main class="main_content">
-     	<h1>Write your JSP/HTML code here</h1>
+     	<div class="assignment_card">
+     		<h3>Create New Assignment</h3>
+     		<div id="add_assignment_form" >
+                <form action="" method="POST">
+                    	<div>
+                    		<input type="text" id="new_assignment_name" name="assignment_name" placeholder="Assignment Name" required>
+                    	<select name="student_course" id="courses">
+                   	
+                    </select>
+                    <input type="date" name="due_date" required>
+                    	</div>
+                    <textarea name="description" placeholder="Enter assignment instructions..." rows="4"></textarea>                    
+                    <div class="form_footer_row">
+    						<input type="file" name="submission_file" id="select_file" accept=".pdf,.zip">
+    						<button type="submit" id="add_assignment_btn">Add Assignment</button>
+					</div>                
+				</form>
+            </div>
+     	</div>
+     	
+     	  <div class="enable_scroll submission_tracker_table">
+     	  <h3>Student Directory</h3>
+                <table>
+                    <thead>
+                        <tr>
+                        	<th hidden>
+                        		Real Student ID
+                        	</th>
+                        	<th>
+                        		ID
+                        	</th>
+                            <th>
+                                Student Name
+                            </th>
+                            <th>
+                                Assignment Name
+                            </th>
+                            <th>
+                            		Due Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    		<tr>
+                    			<td hidden>1</td>
+                    			<td> 2</td>
+                    			<td> Amit Kumar</td>
+                    			<td>Java Collection</td>
+                    			<td>2026-04-13</td>
+                    			<td>Submitted</td>
+                    			<td>Review</td>
+                    		</tr>
+                    </tbody>
+                </table>
+            </div>
      </main>
      
      <%

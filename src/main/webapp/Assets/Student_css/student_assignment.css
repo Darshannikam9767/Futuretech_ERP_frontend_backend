@@ -40,6 +40,7 @@
     transition: .1s;
     box-shadow: 0 10px 25px var(--card_shadow);
     cursor: pointer;
+    width:100%;
 }
 
 .assignment_drop_area{
@@ -57,6 +58,16 @@
 .assignment_drop_area:hover {
     border: 2px solid var(--gray_text);
     border-radius: 20px;
+}
+
+#fileName {
+    word-wrap: break-word;       /* Older browsers */
+    overflow-wrap: break-word;    /* Modern browsers */
+    white-space: normal;          /* Ensures it doesn't stay on one line */
+    max-width: 100%;              /* Limits width to the parent card */
+    display: block;               /* Ensures padding/margins work right */
+    text-align: center;
+    padding: 0 10px;              /* Keeps text away from the edges */
 }
 
 .assignment_drop_area p {

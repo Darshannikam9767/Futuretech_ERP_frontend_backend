@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Student_css/student_dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Student_css/student_my_domain.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
+	<link rel="preload" href="${pageContext.request.contextPath}/Assets/Student_css/student_dashboard.css" as="style">
+	<link rel="preload" href="${pageContext.request.contextPath}/Assets/images/logo.png" as="image">
 </head>
 
 <body>

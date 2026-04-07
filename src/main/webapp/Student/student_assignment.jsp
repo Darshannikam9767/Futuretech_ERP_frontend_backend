@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Student_css/student_dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/Student_css/student_assignment.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets/images/logo.png" type="image/x-icon">
+	<link rel="preload" href="${pageContext.request.contextPath}/Assets/Student_css/student_dashboard.css" as="style">
+	<link rel="preload" href="${pageContext.request.contextPath}/Assets/images/logo.png" as="image">
 </head>
 
 <body>
@@ -48,26 +50,37 @@
         </div>
     </div>
     <main class="assignment_main_content">
-        <div class="upload_assignment_section" id="assignment_design_card">
-                <h2>Upload Submission</h2>
-                <div class="assignment_drop_area">
-                    <p id ="name"> Click to browse</p>
-                    <span>Supports PDF, DOC, ZIP (Max 10MB)</span>
-                    <input type="file" id="select_file" accept=".pdf,.doc,.docx,.zip">
-                </div>
-                <button class="assignment_submit_btn">Submit Assignment</button>
-           </div>
-           
-           <div class="task_due" id="assignment_design_card">
-                <h2>Task Due</h2>
-                <div id="due_subcard">
-                    <h3>Java Collection Framework</h3>
-                    <p id="description">Implement ArrayList, LinkedList, and HashMap with custom examples</p>
-                    <span id="assignment_time_left">5 days left</span>
-                    <p id="assignment_status">Pending</p>
-                </div>
+    <div class="upload_assignment_section" id="assignment_design_card">
+        <h2>Upload Submission</h2>
+        <form action="${pageContext.request.contextPath}/StudentSubmissionServlet" 
+              method="POST" 
+              enctype="multipart/form-data" 
+              id="submissionForm">
+          
+            <input type="hidden" name="assignment_id" value="1">
+
+            <div class="drop_area" id="dropArea" style="cursor:pointer;">
+                <p id="fileName">Click to browse</p>
+                <span>Supports PDF, ZIP (Max 10MB)</span>
+                
+                <input type="file" name="submission_file" id="select_file" 
+                       accept=".pdf,.zip" style="display:none;">
             </div>
-    </main>
+
+            <button type="submit" class="assignment_submit_btn">Submit Assignment</button>
+        </form>
+    </div>
+    
+    <div class="task_due" id="assignment_design_card">
+        <h2>Task Due</h2>
+        <div id="due_subcard">
+            <h3>Java Collection Framework</h3>
+            <p id="description">Implement ArrayList, LinkedList, and HashMap with custom examples</p>
+            <span id="assignment_time_left">5 days left</span>
+            <p id="assignment_status">Pending</p>
+        </div>
+    </div>
+</main>
 
 <%
 	if(session.getAttribute("userrole")==null){
@@ -82,20 +95,51 @@
 	%>
     <script>
     
-    	const dropArea = document.querySelector('.assignment_drop_area');
-        const select_file = document.getElementById('select_file');
+    const dropArea = document.getElementById('dropArea');
+    const select_file = document.getElementById('select_file');
+    const fileNameDisplay = document.getElementById('fileName');
+    const submissionForm = document.getElementById('submissionForm');
 
-        dropArea.addEventListener('click', () => {
-            select_file.click()
-        })
+    // 1. Trigger file browser on click
+    if(dropArea) {
+        dropArea.addEventListener('click', () => select_file.click());
+    }
 
-        select_file.addEventListener('change', function () {
-            if (this.files.length > 0) {
-               document.getElementById("name").innerText=this.files[0].name;
-            }
-        });
-    
-    
+    // 2. Update filename and size display
+   select_file.addEventListener('change', function () {
+    if (this.files && this.files.length > 0) {
+        const file = this.files[0];
+        let displaySize = "";
+
+        // 1. Smart Unit Logic
+        if (file.size < 1024 * 1024) {
+            // Less than 1MB? Show KB
+            displaySize = (file.size / 1024).toFixed(2) + " KB";
+        } else {
+            // 1MB or more? Show MB
+            displaySize = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+        }
+
+        // 2. Update the UI
+        fileNameDisplay.innerText = file.name + " (" + displaySize + ")";
+        fileNameDisplay.style.color = "#2ecc71"; // Success Green
+        
+    } else {
+        fileNameDisplay.innerText = "Click to browse";
+        fileNameDisplay.style.color = "";
+    }
+});
+
+    // 3. Simple Form Validation
+    submissionForm.addEventListener('submit', function(e) {
+        if (select_file.files.length === 0) {
+            e.preventDefault(); 
+            alert("Please select a file first!");
+        } else {
+            // Visual feedback that upload has started
+            document.querySelector('.assignment_submit_btn').innerText = "Uploading...";
+        }
+    });    
     
         const logout_btn=document.getElementById("logout_btn");
         logout_btn.addEventListener('click',()=>{
