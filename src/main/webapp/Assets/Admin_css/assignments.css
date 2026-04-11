@@ -65,40 +65,8 @@ input[type="date"] { flex: 1; }
     margin-top: 10px;
 }
 /* Styling the actual input box */
-#select_file {
-    background-color: var(--input_bg_color);
-    border: 1px dashed var(--input_border_color);
-    width: auto;
-    max-width: 350px;
-    padding: 8px;
-    margin-bottom: 0; /* Changed from 25px to 0 */
-    cursor: pointer;
-}
 
-/* THE FIX: Styling the "Choose File" button inside the input */
-#select_file::file-selector-button {
-    background-color: #2d3748; /* Darker grey to stand out */
-    border: 1px solid var(--input_border_color);
-    color: var(--white_text);
-    padding: 8px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-right: 15px;
-    font-size: 14px;
-    transition: 0.3s;
-}
 
-/* Hover effect for the internal button */
-#select_file::file-selector-button:hover {
-    background-color: #4a5568;
-    border-color: #805ad5; /* Purple highlight */
-}
-
-/* Hover effect for the whole dashed area */
-#select_file:hover {
-    border-color: #805ad5;
-    background-color: rgba(128, 90, 213, 0.05);
-}
 
 
 #add_assignment_btn {
@@ -108,7 +76,7 @@ input[type="date"] { flex: 1; }
     color: var(--white_text);
     font-size: 18px;
     font-weight: 600;
-    
+    width:100%;
     transition: 0.3s;
     border: none;
     cursor: pointer;
@@ -209,3 +177,51 @@ input[type="date"] { flex: 1; }
     -webkit-overflow-scrolling: touch;
 }
 
+/* Desktop: Keep them in a row */
+#a_c {
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Tablet & Mobile: Stack them vertically */
+/* Update your Media Query block */
+@media (max-width: 1024px) {
+    /* FIX 1: Main Content Container */
+    /* Ensure the parent of these cards allows them to stack and grow */
+    .main_content {
+        display: block !important; /* Switch from flex to block */
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+
+    /* FIX 2: Individual Cards */
+    .assignment_card, 
+    .submission_tracker_table {
+        display: block !important; /* Switch from flex to block */
+        flex: none !important;      /* Stop trying to occupy 1/2 of the height */
+        width: 100%;
+        max-height: none !important;
+        height: auto !important;
+        margin-bottom: 25px;       /* Spacing between the form and the table */
+    }
+
+    /* FIX 3: Form Inputs */
+    #a_c {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* FIX 4: Table Scrolling */
+    .enable_scroll {
+        display: block;
+        width: 100%;
+        overflow-x: auto; /* Horizontal scroll for table data */
+        padding-bottom: 10px;
+    }
+
+    .submission_tracker_table table {
+        min-width: 600px; /* Ensures columns don't collapse */
+    }
+}

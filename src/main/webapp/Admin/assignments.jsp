@@ -56,9 +56,9 @@
      	<div class="assignment_card">
      		<h3>Create New Assignment</h3>
      		<div id="add_assignment_form" >
-                <form action="" method="POST">
-                    	<div>
-                    		<input type="text" id="new_assignment_name" name="assignment_name" placeholder="Assignment Name" required>
+                <form action="AdminAssignmentServlet" method="POST">
+                    	<div id="a_c">
+                    	<input type="text" id="new_assignment_name" name="assignment_name" placeholder="Assignment Name" required>
                     	<select name="student_course" id="courses">
                    	
                     </select>
@@ -66,7 +66,6 @@
                     	</div>
                     <textarea name="description" placeholder="Enter assignment instructions..." rows="4"></textarea>                    
                     <div class="form_footer_row">
-    						<input type="file" name="submission_file" id="select_file" accept=".pdf,.zip">
     						<button type="submit" id="add_assignment_btn">Add Assignment</button>
 					</div>                
 				</form>
@@ -74,11 +73,11 @@
      	</div>
      	
      	  <div class="enable_scroll submission_tracker_table">
-     	  <h3>Student Directory</h3>
+     	  <h3>Assignment Directory</h3>
                 <table>
                     <thead>
                         <tr>
-                        	<th hidden>
+                        	<th hidden >
                         		Real Student ID
                         	</th>
                         	<th>
@@ -102,15 +101,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    		<tr>
-                    			<td hidden>1</td>
-                    			<td> 2</td>
-                    			<td> Amit Kumar</td>
-                    			<td>Java Collection</td>
-                    			<td>2026-04-13</td>
-                    			<td>Submitted</td>
-                    			<td>Review</td>
-                    		</tr>
+                    		
                     </tbody>
                 </table>
             </div>
@@ -147,6 +138,10 @@
         	if(confirm("Do you realy want to Logout"))
         		window.location.href="${pageContext.request.contextPath}/LogoutServlet";
         })
+        const params = new URLSearchParams(window.location.search);
+        if(params.get("status") == "created"){
+        		alert("Assignment created successfully!")
+        }
     </script>
 </body>
 
