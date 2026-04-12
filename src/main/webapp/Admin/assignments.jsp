@@ -72,8 +72,10 @@
             </div>
      	</div>
      	
-     	  <div class="enable_scroll submission_tracker_table">
-     	  <h3>Assignment Directory</h3>
+     	<div class="submission_tracker_table">
+    		<h3>Assignment Directory</h3>
+     	  <div class="enable_scroll ">
+     	  
                 <table>
                     <thead>
                         <tr>
@@ -104,6 +106,7 @@
                     		
                     </tbody>
                 </table>
+            </div>
             </div>
      </main>
      
@@ -141,6 +144,7 @@
         const params = new URLSearchParams(window.location.search);
         if(params.get("status") == "created"){
         		alert("Assignment created successfully!")
+        		 window.history.replaceState({}, document.title, window.location.pathname);
         }
     </script>
 </body>

@@ -1,33 +1,45 @@
-.student_btn {
-    position: absolute;
+.student_btn,
+.admin_btn {
+    position: fixed;
     right: 20px;
-    top: 100px;
-	position:fixed;
+    top: 100px; /* Adjusted to sit within the relative registration_section */
+    z-index: 100;
 }
 
-#register_admin {
-    border: none;
+#register_admin,
+#register_student {
+    width: auto; /* Overrides the global button width */
+    padding: 10px 20px;
     border: 1px solid var(--btn_g_right);
-    background: transparent;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 10px 25px var(--card_shadow);
+    color: var(--white_text);
 }
 
-#register_admin:hover {
+#register_admin:hover,
+#register_student:hover {
     background: var(--btn_g_right);
     color: var(--bg_color);
     box-shadow: 0 0 10px var(--btn_g_right);
 }
 
 
-#registration_section{
-	 display: flex;
+.hidden {
+    display: none !important;
+}
+
+#student_registration_section,
+#admin_registration_section {
+    display: flex; /* JavaScript will toggle the .hidden class instead */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top:60px;
+    margin-top: 60px;
+    position: relative; /* Context for absolute buttons */
+    transition:all 0.3 ease;
 }
 
 h1,
@@ -53,7 +65,7 @@ hr {
 
 #card {
     background-color: var(--card_bg_color);
-    width: 900px; /* Increased from 380px for side-by-side view */
+    width: 850px; /* Increased from 380px for side-by-side view */
     max-width: 95%; /* Safety for smaller laptops */
     padding: 30px;
     border-radius: 20px;

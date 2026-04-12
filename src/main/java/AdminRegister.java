@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import DataBase.DBConnection;
 
@@ -46,53 +48,32 @@ HttpSession session = request.getSession(false);
 		request.getRequestDispatcher("/Admin/register.jsp").include(request, response);
 		
 		try(Connection con = DBConnection.getConnection()){
-//			Statement st = con.createStatement();
+			Statement st = con.createStatement();
 			
 			String adminName = (String) session.getAttribute("username");
 			out.println("<script>");
 			out.println("document.getElementById('username').innerText = '" + adminName + "';");
 			out.println("document.getElementById('profile_logo').innerText = '"+adminName.toUpperCase().charAt(0)+"'");
 			out.println("</script>");
+			
+			ResultSet rsCourses = st.executeQuery("SELECT course_id, course_name FROM courses WHERE is_active = true");
+			out.println("<script>");
+			// 2. Clear the dropdown once before adding new options
+			out.println("document.getElementById('courses').innerHTML = '';"); 
+
+			while(rsCourses.next()) {
+			    // 3. Get values from Java Resultset
+			    int cId = rsCourses.getInt("course_id");
+			    String cName = rsCourses.getString("course_name");
+			    
+			    // 4. Carefully concatenate Java variables into the JavaScript string
+			    out.println("document.getElementById('courses').innerHTML += `<option value='" + cId + "'>" + cName + "</option>`;");
+			}
+			out.println("</script>");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		String formType = request.getParameter("formType");
-
-        try (Connection con = DBConnection.getConnection()) {
-            if ("student".equals(formType)) {
-                String sql = "INSERT INTO students (name, contact, email, domain) VALUES (?, ?, ?, ?)";
-                
-                try (PreparedStatement ps = con.prepareStatement(sql)) {
-                    ps.setString(1, request.getParameter("name"));    // JSP: name="name"
-                    ps.setString(2, request.getParameter("contact")); // JSP: name="contact"
-                    ps.setString(3, request.getParameter("email"));   // JSP: name="email"
-                    ps.setString(4, request.getParameter("domain"));  // JSP: name="domain"
-                    ps.executeUpdate();
-                }
-            } else if ("admin".equals(formType)) {
-                String sql = "INSERT INTO admins (name, email, password) VALUES (?, ?, ?)";
-                try (PreparedStatement ps = con.prepareStatement(sql)) {
-                    ps.setString(1, request.getParameter("admin_name"));
-                    ps.setString(2, request.getParameter("admin_email"));
-                    ps.setString(3, request.getParameter("admin_pass"));
-                    ps.executeUpdate();
-                }
-            }
-//            response.sendRedirect("AdminRegister?msg=success");
-            
-        } catch (Exception e) {
-            e.printStackTrace(); 
-            response.sendRedirect("AdminRegister?msg=error");
-        }
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }

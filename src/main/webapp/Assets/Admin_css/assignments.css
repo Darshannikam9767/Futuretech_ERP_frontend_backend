@@ -217,11 +217,47 @@ input[type="date"] { flex: 1; }
     .enable_scroll {
         display: block;
         width: 100%;
-        overflow-x: auto; /* Horizontal scroll for table data */
+         /* Horizontal scroll for table data */
         padding-bottom: 10px;
     }
 
     .submission_tracker_table table {
         min-width: 600px; /* Ensures columns don't collapse */
+        overflow-x: auto;
     }
+}
+
+.review_btn{
+	background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+    color: var(--btn_g_right); /* Using your cyan/teal variable */
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.review_btn:hover {
+    background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+    color: #ffffff;
+    border-color: transparent;
+    transform: scale(0.95);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+}
+
+/* Active/Click State */
+.review_btn:active {
+    transform: scale(1.02);
+}
+
+/* Optional: Icon sizing if you add a FontAwesome or Material Icon */
+.review_btn i {
+    font-size: 0.9rem;
 }

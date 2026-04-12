@@ -69,7 +69,7 @@ HttpSession session = request.getSession(false);
 
 	        // 3. Fetch Table Records
 	        String tableQuery = "SELECT s.student_id, s.full_name, c.course_name, c.fees, s.amount_paid, s.status " +
-	                            "FROM students s JOIN courses c ON s.course_id = c.course_id";
+	                            "FROM students s JOIN courses c ON s.course_id = c.course_id order by s.student_id desc";
 	        ResultSet rsTable = st.executeQuery(tableQuery);
 
 	        out.println("<script>");

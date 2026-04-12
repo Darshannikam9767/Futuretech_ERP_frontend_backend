@@ -53,34 +53,65 @@
     </div>
     <main class="main_content">
      		<div id="registration_section">
-            <div class="student_btn">
-                <button id="register_admin">Register Admin</button>
-            </div>
+            	<div id="student_registration_section" hidden>
+            		<div class="student_btn">
+                		<button id="register_admin">Register Admin</button>
+            		</div>
 
-            <div id="card">
-                <header>
-                    <h1>Student Registration</h1>
-                    <p>Enter Student Details</p>
-                </header>
-                <hr>
-                <p id="email_add">Student Information</p>
-                <form action="" method="post">
-    					<div class="form_row">
-        					<input type="text" name="student_name" placeholder="Enter Student Name" autocomplete="name" required autofocus>
-        					<input type="email" name="email" placeholder="Enter Student Email" autocomplete="email" required>
-    					</div>
+            		<div id="card">
+                		<header>
+                    		<h1>Student Registration</h1>
+                    		<p>Enter Student Details</p>
+               			</header>
+                		<hr>
+                		<p id="email_add">Student Information</p>
+                		<form action="AdminStudentRegistrastion" method="post">
+    						<div class="form_row">
+        						<input type="text" id="student_name" name="student_name" placeholder="Enter Student Name" autocomplete="name" required autofocus>
+        						<input type="email" name="email" placeholder="Enter Student Email" autocomplete="email" required>
+    						</div>
 
-    					<div class="form_row">
-        					<input type="text" name="phone_number" id="phnumber" placeholder="Enter Phone Number" autocomplete="mobile" required>
-        					<select name="student_course" id="courses">
-            				</select>
-    					</div>
+    						<div class="form_row">
+        						<input type="text" name="phone_number" id="phnumber" placeholder="Enter Phone Number" autocomplete="mobile" required maxLength="10"
+    								oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        						<select name="student_course" id="courses">
+            					</select>
+    						</div>
     
-    					<input type="password" name="password" id="password" placeholder="Enter Password Student" autocomplete="current-password" required>
-    					<button id="register_btn" type="submit">Register</button>
-				</form>
-            </div>
-        </div>
+    						<input type="password" name="password" id="password" placeholder="Enter Password For Student" autocomplete="current-password" required>
+    						<button id="student_register_btn" type="submit">Register</button>
+						</form>
+            		</div>
+            	</div>
+            	
+            	<div id="admin_registration_section" class="hidden">
+            			<div class="admin_btn">
+                		<button id="register_student">Register Student</button>
+            		</div>
+
+            		<div id="card">
+                		<header>
+                    		<h1>Admin Registration</h1>
+                    		<p>Enter Admin Details</p>
+               			</header>
+                		<hr>
+                		<p id="email_add">Admin Information</p>
+                		<form action="AdminAdminRegister" method="post">
+    						<div class="form_row">
+        						<input type="text" id="admin_name" name="admin_name" placeholder="Enter Admin Name" autocomplete="name" required autofocus>
+        						<input type="email" name="email" placeholder="Enter Admin Email" autocomplete="email" required>
+    						</div>
+
+    						<div class="form_row">
+        						<input type="text" name="phone_number" id="phnumber" placeholder="Enter Phone Number" autocomplete="mobile" required maxLength="10"
+    								oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+    							<input type="password" name="password" id="password" placeholder="Enter Password For Admin" autocomplete="current-password" required>	
+    						</div>
+    						<button id="admin_register_btn" type="submit">Register</button>
+						</form>
+            		</div>
+            	</div>
+        	</div>
      </main>
      
      
@@ -115,6 +146,37 @@
         	if(confirm("Do you realy want to Logout"))
         		window.location.href="${pageContext.request.contextPath}/LogoutServlet";
         })
+        
+        
+		const studentSec = document.getElementById("student_registration_section");
+		const adminSec = document.getElementById("admin_registration_section");
+
+		const toAdminBtn = document.getElementById("register_admin");
+		const toStudentBtn = document.getElementById("register_student");
+
+		// Switch to Admin Form
+		toAdminBtn.addEventListener('click', () => {
+    		studentSec.classList.add("hidden");
+    		adminSec.classList.remove("hidden");
+    		document.getElementById("admin_name").focus()
+		});
+
+		// Switch to Student Form
+		toStudentBtn.addEventListener('click', () => {
+    		adminSec.classList.add("hidden");
+    		studentSec.classList.remove("hidden");
+    		document.getElementById("student_name").focus()
+		});
+		
+		const params = new URLSearchParams(window.location.search);
+		if (params.get("status") === "success") {
+		    alert("Registration successful!");
+		    const newUrl = window.location.pathname;
+		    window.history.replaceState({}, document.title, newUrl);
+		} else if (params.get("status") === "error") {
+		    alert("Registration failed. Please try again.");
+		    window.history.replaceState({}, document.title, window.location.pathname);
+		}
         
     </script>
 </body>

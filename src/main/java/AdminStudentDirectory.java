@@ -77,7 +77,7 @@ public class AdminStudentDirectory extends HttpServlet {
 				
 			}
 			
-			query="select s.student_id,s.full_name,s.contact,s.email,c.course_name,s.status from students s join courses c on s.course_id=c.course_id where s.is_accesable=true";
+			query="select s.student_id,s.full_name,s.contact,s.email,c.course_name,s.status from students s join courses c on s.course_id=c.course_id where s.is_accesable=true order by s.student_id desc";
 			
 			rs=st.executeQuery(query);
 			
