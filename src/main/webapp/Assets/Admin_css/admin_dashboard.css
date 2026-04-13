@@ -45,6 +45,11 @@ body {
     transform: scale(1);
 }
 
+#navbar_and_logout_section{
+	z-index: 9999;
+	backdrop-filter: blur(10px);
+}
+
 /* mobile responsive */
 @media (max-width: 768px) {
 

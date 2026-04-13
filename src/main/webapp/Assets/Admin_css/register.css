@@ -1,3 +1,7 @@
+#registration_section{
+	z-index:0;
+}
+
 .student_btn,
 .admin_btn {
     position: fixed;
