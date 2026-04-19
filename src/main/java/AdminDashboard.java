@@ -80,25 +80,29 @@ public class AdminDashboard extends HttpServlet {
 		        	out.println("let tbody = document.querySelector('.recent_activity_table table tbody')");
 		        	out.println("if(tbody){tbody.innerHTML = ''}");
 		        	while(rsTable.next()) {
-		        			String name = rsTable.getString("full_name");
-		        			String course_name = rsTable.getString("course_name");
-		        			String date = rsTable.getString("created_at").split(" ")[0];
-		        			int amount_paid = rsTable.getInt("amount_paid");
-		        			String status = rsTable.getString("status");
-		        			int total_fees=rsTable.getInt("total_fees");
-		        			int pending_fees = total_fees-amount_paid;
-		        			String tableRow="<tr>"+
-		        							"<td>"+name+"</td>"+
-		        							"<td>"+course_name+"</td>"+
-		        							"<td>"+date+"</td>"+
-		        							"<td>₹ <span>"+amount_paid+"</span></td>"+
-		        							"<td>₹ <span>"+pending_fees+"</span></td>"+
-		        							"<td>"+status+"</td>"+
-		        							"</tr>";
-		        			
-		        			out.println("if(tbody) { tbody.innerHTML += '" + tableRow + "'; }");
-		        			
-		        		}
+		        	    String name = rsTable.getString("full_name");
+		        	    String course_name = rsTable.getString("course_name");
+		        	    String date = rsTable.getString("created_at").split(" ")[0];
+		        	    int amount_paid = rsTable.getInt("amount_paid");
+		        	    String status = rsTable.getString("status");
+		        	    int total_fees = rsTable.getInt("total_fees");
+		        	    int pending_fees = total_fees - amount_paid;
+
+		        	    // DETERMINING THE COLOR LOGIC
+		        	    // If there is money left to pay, make it red. Otherwise, make it green.
+		        	    String feeColor = (pending_fees > 0) ? "#ff4d4d" : "#2ecc71";
+
+		        	    String tableRow = "<tr>" +
+		        	                      "<td>" + name + "</td>" +
+		        	                      "<td>" + course_name + "</td>" +
+		        	                      "<td>" + date + "</td>" +
+		        	                      "<td>₹ <span>" + amount_paid + "</span></td>" +
+		        	                      "<td>₹ <span style=\"color:" + feeColor + "; font-weight:bold;\">" + pending_fees + "</span></td>" +
+		        	                      "<td>" + status + "</td>" +
+		        	                      "</tr>";
+
+		        	    out.println("if(tbody) { tbody.innerHTML += '" + tableRow + "'; }");
+		        	}
 		        	out.println("</script>");
 		        }catch(Exception e) {
 		        	System.out.println("Error during fetching recent activity.......");

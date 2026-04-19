@@ -57,8 +57,8 @@
               enctype="multipart/form-data" 
               id="submissionForm">
           
-            <input type="hidden" name="assignment_id" value="1">
-
+            <input type="hidden" name="assignment_id" value="">
+			<input type="hidden" name="source" value="assignment">
             <div class="drop_area" id="dropArea" style="cursor:pointer;">
                 <p id="fileName">Click to browse</p>
                 <span>Supports PDF, ZIP (Max 10MB)</span>
@@ -160,6 +160,22 @@
                 navbar_and_logout_section.classList.add("show");
             } else {
                 navbar_and_logout_section.classList.remove("show");
+            }
+        });
+        
+        window.addEventListener('load', function() {
+            // 1. Check if the 'upload' parameter exists in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.get('upload') === 'success') {
+                // 2. Show the alert
+                alert("Success! Your assignment has been submitted.");
+
+                // 3. Clear the URL status without reloading the page
+                if (window.history.replaceState) {
+                    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+                }
             }
         });
 

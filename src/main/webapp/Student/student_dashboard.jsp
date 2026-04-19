@@ -84,7 +84,8 @@
               		id="submissionForm">
           
             		<input type="hidden" name="assignment_id" value="1">
-
+					<input type="hidden" name="source" value="dashboard">
+					
             		<div class="drop_area" id="dropArea" style="cursor:pointer;">
                 	<p id="fileName">Click to browse</p>
                 		<span>Supports PDF, ZIP (Max 10MB)</span>

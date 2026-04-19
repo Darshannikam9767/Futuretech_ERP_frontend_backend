@@ -365,7 +365,8 @@ label {
     color: #2bf02b;
 }
 
-#total_pending_fees {
+#total_pending_fees,
+#pending_fees_color {
     color: red;
 }
 

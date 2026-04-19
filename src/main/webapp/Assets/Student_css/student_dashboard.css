@@ -541,8 +541,8 @@ label {
     overflow-y: auto;
 }
 
-.task_due {
-    margin-top: 20px;
+.upload_assignment {
+    margin-bottom: 20px;
 }
 
 #description {
@@ -551,4 +551,32 @@ label {
 
 #select_file {
     display: none;
+}
+
+/* --- Global Status Badges --- */
+#status, #assignment_status {
+    width:max-content;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem; /* Slightly smaller for dashboard */
+    font-weight: 600;
+    margin-top: 10px;
+    border: 1px solid var(--input_border_color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status_pending {
+    color: #f39c12 !important; /* Orange */
+    border-color: #f39c12 !important;
+}
+
+.status_submitted {
+    color: #2bf02b !important; /* Green */
+    border-color: #2bf02b !important;
+}
+
+.status_overdue {
+    color: #ff4d4d !important; /* Red */
+    border-color: #ff4d4d !important;
 }
