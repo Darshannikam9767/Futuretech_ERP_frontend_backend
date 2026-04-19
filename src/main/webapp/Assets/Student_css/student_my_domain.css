@@ -54,11 +54,15 @@
     width:100%;
     transition:.2s;
     
-    word-wrap: break-word;       
-    overflow-wrap: break-word;   
-    word-break: break-all;       
+    word-break: normal; 
+    overflow-wrap: break-word;     
+           
     display: flex;
     flex-direction: column;
+}
+
+.description_card{
+	line-height: 1.4;
 }
 
 .start_date_card:hover, .duration_card:hover, .fees_card:hover, .description_card:hover {

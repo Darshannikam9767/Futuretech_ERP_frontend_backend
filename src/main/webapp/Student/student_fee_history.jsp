@@ -49,73 +49,33 @@
             <h2 id="logout_btn">Logout</h2>
         </div>
     </div>
-    <main class="main_content">
-        <div class="main-content">
-
-  <h2>Fee History</h2>
-
-  <!--3 Cards -->
-  <div class="fee-summary">
-    <div class="summary-card top-card">
-      <p>Total Fee</p>
-      <h3>₹45,000</h3>
-    </div>
-
-    <div class="summary-card paid top-card">
-      <p>Paid</p>
-      <h3>₹30,000</h3>
-    </div>
-
-    <div class="summary-card pending top-card">
-      <p>Pending</p>
-      <h3>₹15,000</h3>
-    </div>
-  </div>
-
-  <h3>Payment History</h3>
-
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="dot"></div>
-      <div class="content">
-        <h4>Installment 1</h4>
-        <p>Due: 2025-12-15</p>
-        <div class="row">
-          <span class="amount">₹15,000</span>
-          <span class="status">Paid</span>
+    <main class="main_fee_content">
+    <div class="fee_status_header_card">
+        <div class="status_icon_circle">
+            <span>₹</span>
         </div>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="dot"></div>
-      <div class="content">
-        <h4>Installment 2</h4>
-        <p>Due: 2026-01-15</p>
-        <div class="row">
-          <span class="amount">₹15,000</span>
-          <span class="status">Paid</span>
+        <div class="fee_info_text">
+            <h1>Fee History</h1>
+            <p id="course_name_display">Java Full Stack Development</p>
+            
+            <div class="fee_data_pills">
+                <div class="fee_pill total">
+                    <span class="label">Total:</span>
+                    <span class="value">₹ 10,000</span>
+                </div>
+                <div class="fee_pill paid">
+                    <span class="label">Paid:</span>
+                    <span class="value">₹ 6,000</span>
+                </div>
+                <div class="fee_pill balance">
+                    <span class="label">Balance:</span>
+                    <span class="value">₹ 4,000</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-
-    <div class="timeline-item pending">
-      <div class="dot"></div>
-      <div class="content">
-        <h4>Installment 3</h4>
-        <p>Due: 2026-02-15</p>
-        <div class="row">
-          <span class="amount">₹15,000</span>
-          <span class="pending-text">Pending</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-    </main>
+</main>
 	
 	<%
 	if(session.getAttribute("userrole")==null){

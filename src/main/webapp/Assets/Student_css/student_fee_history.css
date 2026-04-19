@@ -1,130 +1,156 @@
-:root {
-      --bg_color: #0f172a;
-      --card_bg_color: #151e31;
-      --card_border_color: #2c3346;
-      --card_shadow: #00000080;
-      --card_hover_border_color: #384158;
-      --white_text: #fff;
-      --gray_text: #99a1af;
-      --input_bg_color: #21293c;
-      --input_border_color: #38404f;
-      --btn_g_left: #923aea;
-      --btn_g_right: #2cd1ee;
-      --btn_text_color: #ffffff;
-    }
+.main_fee_content {
+    margin-left: 245px; /* Sidebar space */
+    margin-top: 90px;  /* Header space */
+    padding: 20px;
+    
+    /* FIX: Force the container to stay within the viewport bounds */
+    width: calc(100% - 245px);
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg_color);
-      color: var(--white_text);
-    }
+.fee_status_header_card {
+    background-color: var(--card_bg_color);
+    padding: 45px;
+    border-radius: 20px;
+    
+    /* Ensure it behaves like a flexible row on laptop */
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    
+    border: 1px solid var(--card_border_color);
+    box-shadow: 0 10px 25px var(--card_shadow);
+    
+    /* THE KEY: Force 100% width of the calculated parent */
+    width: 100% !important; 
+    transition: .3s;
+    box-sizing: border-box;
+    justify-content:center
+}
 
-    .main-content {
-      padding: 25px;
-    }
+.fee_status_header_card:hover ,
+.fee_pill:hover{
+    border: 1px solid var(--card_hover_border_color);
+}
 
-    /* 3 cards */
-    .fee-summary {
-      display: flex;
-      gap: 20px;
-      width: 100%;
-      margin-bottom: 30px;
-    }
+/* The Icon Circle */
+.status_icon_circle {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, var(--btn_g_left) 0%, var(--btn_g_right) 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    transition:.3s;
+    flex-shrink: 0;
+}
 
-    .summary-card {
-      background: var(--card_bg_color);
-      border: 1px solid var(--card_border_color);
-      padding: 26px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px var(--card_shadow);
-    }
+.status_icon_circle span {
+    font-size: 70px;
+    font-weight: 700;
+    color: var(--white_text);
+}
 
-    /* same id for all 3  cards*/
-    .top-card {
-      flex: 1;                 
-      font-size: 18px;
-    }
+/* Text Section */
+.fee_info_text h1 {
+    font-size: 48px; /* Large bold heading like the image */
+    color: var(--white_text);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
 
-    .top-card p {
-      color: var(--gray_text);
-      margin: 0;
-      font-size: 18px;
-    }
+.fee_info_text p {
+    color: var(--btn_g_right); /* Cyan/Teal course name */
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
 
-    .top-card h3 {
-      margin-top: 10px;
-      font-size: 32px;        
-      font-weight: bold;
-    }
+/* Financial Pills */
+.fee_data_pills {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    
+    max-width: max-content;
+}
 
-    .summary-card.paid h3 {
-      color: #22c55e;
-    }
+.fee_pill {
+    background-color: var(--input_bg_color);
+    padding: 14px 24px;
+    border-radius: 50px;
+    display: flex;
+    flex:1;
+    
+    justify-content: center; /* Centers text inside the widened pill */
+    align-items: center;
+    white-space: nowrap;
+    
+    gap: 10px;
+    font-size: 15px;
+    box-shadow: 0 10px 25px var(--card_shadow);
+    border: 1px solid var(--card_border_color);
+}
 
-    .summary-card.pending h3 {
-      color: #f97316;
-    }
+.fee_pill .label {
+    color: var(--gray_text);
+}
 
-    .timeline {
-      border-left: 3px solid var(--card_border_color);
-      padding-left: 25px;
-    }
+.fee_pill .value {
+    color: var(--white_text);
+    font-weight: 600;
+}
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 25px;
-    }
+.total .value{
+	color:#00ff00;
+}
 
-    .dot {
-      width: 14px;
-      height: 14px;
-      background: #22c55e;
-      border-radius: 50%;
-      position: absolute;
-      left: -31px;
-      top: 22px;
-    }
+.paid .value{
+	color:var(--btn_g_right);
+}
 
-    .timeline-item.pending .dot {
-      background: #f97316;
-    }
+/* Highlight balance pill if needed */
+.balance .value {
+    color: #ef4444; /* Subtle red border for balance */
+}
 
-    .content {
-      background: var(--card_bg_color);
-      border: 1px solid var(--card_border_color);
-      padding: 18px 22px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px var(--card_shadow);
+@media (max-width:768px){
+	.main_fee_content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 20px;
     }
+}
 
-    .content h4 {
-      margin: 0;
-      font-size: 18px;
+@media (max-width: 1024px) {
+	
+	
+	
+    .fee_status_header_card {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+       	margin-left: 0 !important;
+        
     }
-
-    .content p {
-      color: var(--gray_text);
-      margin: 6px 0 12px;
+    
+    .status_icon_circle{
+    	width:100px;
+    	height:100px;
     }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    
+    .fee_info_text h1{
+    
+    font-size:38px;
+    
     }
-
-    .amount {
-      font-size: 18px;
-      font-weight: bold;
+    
+    .fee_data_pills{
+    justify-content:center;
     }
-
-    .status {
-      color: #22c55e;
-      font-weight: bold;
-    }
-
-    .pending-text {
-      color: #f97316;
-      font-weight: bold;
-    }
+}
