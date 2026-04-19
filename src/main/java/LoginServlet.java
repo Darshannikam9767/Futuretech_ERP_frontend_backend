@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         
+        
         String email = request.getParameter("email").trim();
         String password = request.getParameter("password").trim();
         

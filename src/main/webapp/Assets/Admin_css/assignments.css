@@ -1,4 +1,32 @@
-/* Main Card Container */
+@charset "UTF-8";
+
+/* --- 1. GLOBAL RESET & APP SHELL --- */
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Keeps scrollbars inside the main container only */
+    background-color: var(--bg_color);
+}
+
+/* THE FIX: This handles the Laptop/Desktop View.
+   It offsets the content to make room for the Sidebar (240px) and Header (90px).
+*/
+.assignment_main_content {
+    margin-left: 240px; 
+    margin-top: 90px;  
+    width: calc(100% - 240px);
+    height: calc(100vh - 90px);
+    overflow-y: auto !important; /* Enables scrolling on laptop */
+    display: block !important;    /* Block layout is more stable for tables than flex */
+    gap: 25px;
+    padding: 25px;
+    background-color: var(--bg_color);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* --- 2. ASSIGNMENT FORM CARD --- */
 .assignment_card {
     background-color: var(--card_bg_color);
     padding: 30px;
@@ -6,11 +34,11 @@
     border: 1px solid var(--card_border_color);
     box-shadow: 0 10px 25px var(--card_shadow);
     display: flex;
-    flex: 1;
     flex-direction: column;
     transition: .1s;
-    max-height:max-content;
-    color:#ffffff;
+    max-height: max-content;
+    color: var(--white_text);
+    margin-bottom: 25px;
 }
 
 .assignment_card h3 {
@@ -19,15 +47,13 @@
     font-weight: 500;
 }
 
-
-#add_assignment_form form > div:first-child {
+#a_c {
     display: flex;
     flex-direction: row;
     gap: 15px;
     width: 100%;
     margin-bottom: 20px;
 }
-
 
 #add_assignment_form input,
 #add_assignment_form select,
@@ -43,11 +69,9 @@
     box-sizing: border-box;
 }
 
-
 #new_assignment_name { flex: 2; }   
 #courses { flex: 1.5; }            
 input[type="date"] { flex: 1; }     
-
 
 #add_assignment_form textarea {
     width: 100% !important;       
@@ -56,18 +80,12 @@ input[type="date"] { flex: 1; }
     min-height: 120px;
 }
 
-
 .form_footer_row {
     display: flex;
-    justify-content: space-between; /* Pushes file to left, button to right */
-    align-items: center;           /* Centers them vertically */
+    justify-content: flex-end;
     width: 100%;
     margin-top: 10px;
 }
-/* Styling the actual input box */
-
-
-
 
 #add_assignment_btn {
     background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
@@ -76,70 +94,41 @@ input[type="date"] { flex: 1; }
     color: var(--white_text);
     font-size: 18px;
     font-weight: 600;
-    width:100%;
+    width: 100%;
     transition: 0.3s;
     border: none;
     cursor: pointer;
 }
 
-#add_assignment_form form::after {
-    display: none;
-}
-
 #add_assignment_btn:hover {
-    transform:scale(0.97);
+    transform: scale(0.97);
     box-shadow: 0 0 10px 1px var(--btn_g_right);
 }
 
-#add_assignment_btn:active {
-    transform:scale(1.02);
-}
-
-
-#add_assignment_form input:focus,
-#add_assignment_form select:focus,
-#add_assignment_form textarea:focus {
-    border-color: var(--btn_g_right);
-
-}
-
-
-#add_assignment_form form::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-@media (max-width: 1024px) {
-
-	#add_assignment_btn{
-		font-size:16px;
-	}
-    #add_assignment_form input,
-    #add_assignment_form select ,
-    #add_assignment_form textarea{
-        width: 100%;
-    }
-}
-
-
-.submission_tracker_table{
-	background-color: var(--card_bg_color);
+/* --- 3. SUBMISSION TABLE CARD --- */
+.submission_tracker_table {
+    background-color: var(--card_bg_color);
     padding: 30px;
     border-radius: 20px;
     border: 1px solid var(--card_border_color);
     box-shadow: 0 10px 25px var(--card_shadow);
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    display: block !important; 
     transition: .1s;
+    color: var(--white_text);
+    /* Removed overflow:hidden to prevent the 'disappearing' bug */
+    overflow: visible !important; 
     max-height:max-content;
 }
 
 .submission_tracker_table h3 {
     text-align: left;
-    padding: 10px;
-    color: var(--white_text);
+    padding: 10px 0;
+}
+
+.enable_scroll {
+    width: 100%;
+    overflow-x: auto; /* Horizontal scroll for table */
+    overflow-y: visible;
 }
 
 .submission_tracker_table table {
@@ -153,8 +142,6 @@ input[type="date"] { flex: 1; }
     padding: 15px 10px;
     border-bottom: 1px solid var(--card_border_color);
     text-align: left;
-    text-overflow: ellipsis;
-    cursor: default;
 }
 
 .submission_tracker_table th {
@@ -162,102 +149,108 @@ input[type="date"] { flex: 1; }
 }
 
 .submission_tracker_table tbody tr:hover {
-    transition: .2s;
     background-color: var(--navbar_bg_color);
+    transition: .2s;
 }
 
-.enable_scroll {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.submission_tracker_table{
-	overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Desktop: Keep them in a row */
-#a_c {
-    gap: 15px;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-/* Tablet & Mobile: Stack them vertically */
-/* Update your Media Query block */
-@media (max-width: 1024px) {
-    /* FIX 1: Main Content Container */
-    /* Ensure the parent of these cards allows them to stack and grow */
-    .main_content {
-        display: block !important; /* Switch from flex to block */
-        height: auto !important;
-        overflow-y: visible !important;
-    }
-
-    /* FIX 2: Individual Cards */
-    .assignment_card, 
-    .submission_tracker_table {
-        display: block !important; /* Switch from flex to block */
-        flex: none !important;      /* Stop trying to occupy 1/2 of the height */
-        width: 100%;
-        max-height: none !important;
-        height: auto !important;
-        margin-bottom: 25px;       /* Spacing between the form and the table */
-    }
-
-    /* FIX 3: Form Inputs */
-    #a_c {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 12px !important;
-    }
-
-    /* FIX 4: Table Scrolling */
-    .enable_scroll {
-        display: block;
-        width: 100%;
-         /* Horizontal scroll for table data */
-        padding-bottom: 10px;
-    }
-
-    .submission_tracker_table table {
-        min-width: 600px; /* Ensures columns don't collapse */
-        overflow-x: auto;
-    }
-}
-
+/* --- 4. BUTTONS & STATUS --- */
 .review_btn{
-	background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
-    color: var(--btn_g_right); /* Using your cyan/teal variable */
-    border: 1px solid rgba(6, 182, 212, 0.3);
-    padding: 6px 16px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(4px);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+
+background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+
+color: var(--btn_g_right); /* Using your cyan/teal variable */
+
+border: 1px solid rgba(6, 182, 212, 0.3);
+
+padding: 6px 16px;
+
+border-radius: 8px;
+
+font-size: 0.85rem;
+
+font-weight: 500;
+
+cursor: pointer;
+
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+backdrop-filter: blur(4px);
+
+display: inline-flex;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 5px;
+
 }
 
 .review_btn:hover {
-    background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
-    color: #ffffff;
-    border-color: transparent;
-    transform: scale(0.95);
-    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+
+background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+
+color: #ffffff;
+
+border-color: transparent;
+
+transform: scale(0.95);
+
+box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+
 }
+
+
 
 /* Active/Click State */
+
 .review_btn:active {
-    transform: scale(1.02);
+
+transform: scale(1.02);
+
 }
 
+
+
 /* Optional: Icon sizing if you add a FontAwesome or Material Icon */
+
 .review_btn i {
-    font-size: 0.9rem;
+
+font-size: 0.9rem;
+
+}
+
+/* Status Badges - Using simple solid borders/colors to avoid RGBA */
+.status_badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    border: 1px solid var(--input_border_color);
+}
+
+.status_completed { color: #2bf02b; border-color: #2bf02b; }
+.status_pending { color: #ff0000; border-color: #ff0000; }
+
+/* --- 5. RESPONSIVE QUERIES --- */
+@media (max-width: 1024px) {
+    .assignment_main_content {
+        margin-left: 0 !important;
+        width: 100%;
+        display: block !important;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    #a_c {
+        flex-direction: column;
+    }
+
+    .assignment_card, .submission_tracker_table {
+        margin-bottom: 25px;
+        visibility: visible !important;
+    }
+
+    .submission_tracker_table table {
+        min-width: 600px;
+    }
 }

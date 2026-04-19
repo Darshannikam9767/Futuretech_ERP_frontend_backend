@@ -176,6 +176,7 @@ label {
     background-color: var(--header_bg_color);
     border: 1px solid var(--gray_text);
     border-top: none;
+    position:sticky;
     border-left: none;
 }
 
@@ -199,8 +200,8 @@ label {
     margin: 0;
     padding: 0;
     display: flex;
-    width: 100vw;
-    position: absolute;
+    width: 100%;
+    position: relative;
     top: 0;
 }
 
@@ -211,7 +212,7 @@ label {
 .navbar {
     top: 90px;
     left: 0;
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     background-color: var(--navbar_bg_color);
@@ -275,7 +276,7 @@ label {
     justify-content: center;
     align-items: center;
     left: 0;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     transition: .2s;
 }
@@ -325,7 +326,7 @@ label {
     overflow-y: auto;
     overflow-x: hidden;
 
-    width: calc(100vw - 245px);
+    width: calc(100% - 245px);
     /* IMPORTANT */
     min-height: calc(100vh - 90px);
 }

@@ -52,7 +52,7 @@
         </div>
     </div>
     
-    <main class="main_content">
+    <main class="assignment_main_content">
      	<div class="assignment_card">
      		<h3>Create New Assignment</h3>
      		<div id="add_assignment_form" >
