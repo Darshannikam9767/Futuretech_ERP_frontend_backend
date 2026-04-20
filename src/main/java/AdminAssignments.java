@@ -71,9 +71,7 @@ public class AdminAssignments extends HttpServlet {
             // --- PART B: Fetch and inject Student Directory ---
             String query = "SELECT s.student_id, s.full_name, a.title, a.due_date, sub.submission_id " +
                     "FROM assignments a " +
-                    "/* 1. Link every assignment to every student in that course */ " +
                     "JOIN students s ON s.course_id = a.course_id " +
-                    "/* 2. Check if a submission exists for that specific pair */ " +
                     "LEFT JOIN submissions sub ON s.student_id = sub.student_id AND a.assignment_id = sub.assignment_id " +
                     "ORDER BY a.created_at DESC, s.full_name ASC";
             
@@ -81,28 +79,39 @@ public class AdminAssignments extends HttpServlet {
             out.println("const tbody = document.querySelector('.submission_tracker_table tbody');");
             out.println("tbody.innerHTML = '';"); 
 
-            int index = 1; // FIX: Move this ABOVE the while loop
+            int index = 1; 
             while(rs.next()) {
                 int id = rs.getInt("student_id");
-                String name = rs.getString("full_name");
-                String aTitle = rs.getString("title");
+                String name = rs.getString("full_name").replace("'", "\\'"); // Escape for JS
+                String aTitle = rs.getString("title").replace("'", "\\'");
                 
-                // Safety check for date format
                 String dDate = rs.getString("due_date");
                 if (dDate == null || dDate.isEmpty()) { dDate = "-"; }
                 
-                boolean isSubmitted = rs.getObject("submission_id") != null;
+                // Get submission ID (will be 0 if NULL in DB because it's an int)
+                int subId = rs.getInt("submission_id");
+                boolean isSubmitted = !rs.wasNull(); 
+                
                 String status = isSubmitted ? "Submitted" : "Missing"; 
-                String statusClass = isSubmitted ? "status_submitted" : "status_missing";
+                String statusClass = isSubmitted ? "status_badge status_submitted" : "status_badge status_missing";
+                
+                // --- REVIEW BUTTON LOGIC ---
+                // If submitted, we pass the subId to a JS function. If missing, we disable it.
+                String reviewBtn;
+                if(isSubmitted) {
+                    reviewBtn = "<button class='review_btn' onclick='openReview(" + subId + ")'>Review</button>";
+                } else {
+                    reviewBtn = "<button class='review_btn' style='opacity:0.5; cursor:not-allowed;' disabled>Review</button>";
+                }
 
                 out.println("tbody.innerHTML += `<tr>" +
-                    "<td hidden >" + id + "</td>" +
+                    "<td hidden>" + id + "</td>" +
                     "<td>" + index + "</td>" +
                     "<td>" + name + "</td>" +
                     "<td>" + aTitle + "</td>" +
                     "<td>" + dDate + "</td>" +
-                    "<td><span class='status_badge " + statusClass + "'>" + status + "</span></td>" +
-                    "<td><button class='review_btn'>Review</button></td>" +
+                    "<td><span class='" + statusClass + "'>" + status + "</span></td>" +
+                    "<td>" + reviewBtn + "</td>" +
                     "</tr>`;");
                 
                 index++; 

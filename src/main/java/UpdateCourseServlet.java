@@ -33,7 +33,7 @@ public class UpdateCourseServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("course_id"));
 		String courseName = request.getParameter("course_name");
 		int fees = Integer.parseInt(request.getParameter("fees"));
-		String duration =  request.getParameter("duration");
+		int duration =  Integer.parseInt(request.getParameter("duration"));
 		String description =  request.getParameter("description");
 		
 		try(Connection con = DBConnection.getConnection()){
@@ -42,7 +42,7 @@ public class UpdateCourseServlet extends HttpServlet {
 				ps.setString(1, courseName);
 				ps.setDouble(2, fees);
 				ps.setString(3, description);
-				ps.setString(4, duration);
+				ps.setInt(4, duration);
 				ps.setInt(5, id);
 				
 				int result =ps.executeUpdate();

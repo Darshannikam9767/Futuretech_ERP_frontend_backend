@@ -146,6 +146,13 @@
         		alert("Assignment created successfully!")
         		 window.history.replaceState({}, document.title, window.location.pathname);
         }
+        
+        
+        function openReview(submissionId) {
+            // This will call the servlet we create to download/view the file
+            window.location.href = "${pageContext.request.contextPath}/ReviewSubmissionServlet?subId=" + submissionId;
+        }
+       
     </script>
 </body>
 

@@ -85,7 +85,7 @@ HttpSession session = request.getSession(false);
 	            cardsHtml.append("<h4 id='course_body'>").append(rs.getString("description")).append("</h4>");
 	            cardsHtml.append("</div><div class='course_info'>");
 	            cardsHtml.append("<h3 hidden id='real_course_id'>").append(rs.getInt("course_id")).append("</h3>");
-	            cardsHtml.append("<div class='duration_subcard'><h3 id='duration'>").append(rs.getString("duration")).append("</h3><span id='d_span'>Duration</span></div>");
+	            cardsHtml.append("<div class='duration_subcard'><h3 id='duration'>").append(rs.getString("duration")).append(" Days</h3><span id='d_span'>Duration</span></div>");
 	            cardsHtml.append("<div class='fees_subcard'><h3 id='fees'>₹ <span>").append(rs.getInt("fees")).append("</span></h3><span id='f_span'>Fee</span></div>");
 	            cardsHtml.append("</div><div class='action_div'>");
 	            cardsHtml.append("<button class='edit-btn'>EDIT</button>");

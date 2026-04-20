@@ -81,7 +81,7 @@
                 <form action="AddCourseServlet" method="POST">
                     <input type="text" id="new_course_name" name="course_name" placeholder="Course Name" required>
                     <input type="text" name="fees" placeholder="Total Fees" required>
-                    <input type="text" name="duration" placeholder="Duration (e.g. 6 Months)" required>
+                    <input type="text" name="duration" placeholder="Duration (e.g. 60) Number of Days" required>
                     <input type="text" name="description" placeholder="Course Description">
                     <button type="submit" id="add_course_btn">Add Course</button>
                 </form>
@@ -92,7 +92,7 @@
                     <input type="text" hidden id="real_c_id" name="course_id" placeholder="Course ID">
                     <input type="text" id="edit_course_name" name="course_name" placeholder="Course Name" required>
                     <input type="text" id="edit_course_fees" name="fees" placeholder="Total Fees" required>
-                    <input type="text" id="edit_course_duration" name="duration" placeholder="Duration (e.g. 6 Months)"
+                    <input type="text" id="edit_course_duration" name="duration" placeholder="Duration (e.g. 60) Number of Days"
                         required>
                     <input type="text" id="edit_course_description" name="description" placeholder="Course Description">
                     <button type="submit" id="update_course_btn">Save Course Changes</button>
@@ -162,13 +162,15 @@
                 const id = card.querySelector("#real_course_id").innerText;
                 const name = card.querySelector("#course_name").innerText.trim();
                 const desc = card.querySelector("#course_body").innerText.trim();
-                const duration = card.querySelector("#duration").innerText;
+                const durationRaw = card.querySelector("#duration").innerText;
+                // Strip everything that isn't a number (removes " Days", " Months", etc.)
+                const durationClean = durationRaw.replace(/\D/g, "");
                 const fees = card.querySelector("#fees span").innerText;
 
                 document.getElementById("real_c_id").value = id;
                 document.getElementById("edit_course_name").value = name;
                 document.getElementById("edit_course_fees").value = fees;
-                document.getElementById("edit_course_duration").value = duration;
+                document.getElementById("edit_course_duration").value = durationClean;
                 document.getElementById("edit_course_description").value = desc;
 
                 editCourseForm.classList.remove("hidden");

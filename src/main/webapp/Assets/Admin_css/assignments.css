@@ -232,14 +232,18 @@ font-size: 0.9rem;
 .status_pending { color: #ff0000; border-color: #ff0000; }
 
 /* --- 5. RESPONSIVE QUERIES --- */
-@media (max-width: 1024px) {
-    .assignment_main_content {
+
+@media(max-width :768px){
+	.assignment_main_content {
         margin-left: 0 !important;
         width: 100%;
         display: block !important;
         height: auto;
         overflow-y: auto;
     }
+}
+@media (max-width: 1024px) {
+    
 
     #a_c {
         flex-direction: column;

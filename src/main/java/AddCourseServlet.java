@@ -25,7 +25,7 @@ public class AddCourseServlet extends HttpServlet {
 		String courseName = request.getParameter("course_name");
         String feesStr = request.getParameter("fees").replaceAll("[^\\d.]", "");
         double fees = Double.parseDouble(feesStr);
-        String duration = request.getParameter("duration");
+        int duration = Integer.parseInt(request.getParameter("duration"));
         String description = request.getParameter("description");
         
         try(Connection con = DBConnection.getConnection()){
@@ -35,7 +35,7 @@ public class AddCourseServlet extends HttpServlet {
             ps.setString(1, courseName);
             ps.setDouble(2, fees);
             ps.setString(3, description);
-            ps.setString(4, duration);
+            ps.setInt(4, duration);
             
             int rows = ps.executeUpdate();
             

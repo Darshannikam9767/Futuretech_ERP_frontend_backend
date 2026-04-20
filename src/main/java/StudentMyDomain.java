@@ -65,7 +65,7 @@ public class StudentMyDomain extends HttpServlet {
 				out.println("<script>");
 				out.println("document.getElementById('course_title').innerText = '" + courseName + "';");
 				out.println("document.getElementById('start_date').innerText = '" + enrollmentDate + "';");
-				out.println("document.getElementById('duration').innerText = '" + duration + "';");
+				out.println("document.getElementById('duration').innerText = '" + duration + " Days';");
 				out.println("document.getElementById('fees').innerText = '₹ " + courseFees + "';");
 				out.println("document.getElementById('description').innerText = '" + cleanDesc + "';");
 				out.println("</script>");
