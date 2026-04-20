@@ -70,8 +70,8 @@ public class ForgetPasswordServlet extends HttpServlet {
 	
 	private void sendEmail(String toEmail, String otp, String role) {
 	    // For Gmail, use an "App Password," not your regular login password
-	    final String fromEmail = "chatbotc32@gmail.com"; 
-	    final String password = "hbwlrfravmhvmjnl"; 
+	    final String fromEmail = DBConnection.getProperty("email.username");
+	    final String password = DBConnection.getProperty("email.password");
 
 	    Properties props = new Properties();
 	    props.put("mail.smtp.host", "smtp.gmail.com");

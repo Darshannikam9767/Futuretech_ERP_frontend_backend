@@ -1,0 +1,2 @@
+# Ignore the secrets file
+src/main/java/db.properties
